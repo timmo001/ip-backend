@@ -1,20 +1,27 @@
 import {
-  Controller,
   Body,
-  Post,
+  Controller,
+  Get,
   HttpException,
   HttpStatus,
-  Get,
+  Post,
   Req,
   UseGuards,
 } from '@nestjs/common';
-import { CreateUserDto } from '../users/dto/user.create.dto';
-import { RegistrationStatus } from './interfaces/regisration-status.interface';
+import { AuthGuard } from '@nestjs/passport';
+import { Request } from 'express';
+
 import { AuthService } from './auth.service';
+import { CreateUserDto } from '../users/dto/user.create.dto';
+import { JwtPayload } from './interfaces/payload.interface';
 import { LoginStatus } from './interfaces/login-status.interface';
 import { LoginUserDto } from '../users/dto/user.login.dto';
-import { JwtPayload } from './interfaces/payload.interface';
-import { AuthGuard } from '@nestjs/passport';
+import { RegistrationStatus } from './interfaces/regisration-status.interface';
+import { UserEntity } from '../users/entity/user.entity';
+
+interface RequestExt extends Request {
+  user: UserEntity;
+}
 
 @Controller('auth')
 export class AuthController {
@@ -40,9 +47,9 @@ export class AuthController {
     return await this.authService.login(loginUserDto);
   }
 
-  @Get('whoami')
+  @Get('user')
   @UseGuards(AuthGuard())
-  public async testAuth(@Req() req: any): Promise<JwtPayload> {
+  public async testAuth(@Req() req: RequestExt): Promise<JwtPayload> {
     return req.user;
   }
 }

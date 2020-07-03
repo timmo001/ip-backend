@@ -11,5 +11,10 @@ export class UserDto {
   @IsEmail()
   email: string;
 
+  @IsNotEmpty()
+  firstName: string;
+
+  lastName: string;
+
   createdOn?: Date;
 }

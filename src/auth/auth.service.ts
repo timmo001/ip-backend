@@ -14,7 +14,7 @@ import config from '../config';
 export class AuthService {
   constructor(
     private readonly usersService: UsersService,
-    private readonly jwtService: JwtService,
+    private readonly jwtService: JwtService
   ) {}
 
   async register(userDto: CreateUserDto): Promise<RegistrationStatus> {
