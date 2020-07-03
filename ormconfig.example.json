@@ -1,0 +1,10 @@
+{
+  "type": "mariadb",
+  "host": "localhost",
+  "port": 3306,
+  "username": "upaasuser",
+  "password": "password1234",
+  "database": "upaas",
+  "synchronize": true,
+  "autoLoadEntities": true
+}
