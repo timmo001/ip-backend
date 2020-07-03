@@ -1,24 +1,64 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { User } from './user.entity';
+import { UserDto } from './dto/user.dto';
+import { UserEntity } from '../users/entity/user.entity';
+import { toUserDto } from '../shared/mapper';
+import { CreateUserDto } from './dto/user.create.dto';
+import { LoginUserDto } from './dto/user.login.dto';
+import { comparePasswords } from '../shared/utils';
 
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectRepository(User)
-    private usersRepository: Repository<User>
+    @InjectRepository(UserEntity)
+    private readonly userRepo: Repository<UserEntity>
   ) {}
 
-  findAll(): Promise<User[]> {
-    return this.usersRepository.find();
+  async findOne(options?: object): Promise<UserDto> {
+    const user = await this.userRepo.findOne(options);
+    return toUserDto(user);
   }
 
-  findOne(id: string): Promise<User> {
-    return this.usersRepository.findOne(id);
+  async findByLogin({ username, password }: LoginUserDto): Promise<UserDto> {
+    const user = await this.userRepo.findOne({ where: { username } });
+
+    if (!user) {
+      throw new HttpException('User not found', HttpStatus.UNAUTHORIZED);
+    }
+
+    // compare passwords
+    const areEqual = await comparePasswords(user.password, password);
+
+    if (!areEqual) {
+      throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
+    }
+
+    return toUserDto(user);
   }
 
-  async remove(id: string): Promise<void> {
-    await this.usersRepository.delete(id);
+  async findByPayload({ username }: any): Promise<UserDto> {
+    return await this.findOne({ where: { username } });
+  }
+
+  async create(userDto: CreateUserDto): Promise<UserDto> {
+    // check if the user exists in the db
+    const userInDb = await this.userRepo.findOne({
+      where: { username: userDto.username },
+    });
+    if (userInDb) {
+      throw new HttpException('User already exists', HttpStatus.BAD_REQUEST);
+    }
+
+    const user: UserEntity = this.userRepo.create(userDto);
+
+    await this.userRepo.save(user);
+
+    return toUserDto(user);
+  }
+
+  private _sanitizeUser(user: UserEntity) {
+    delete user.password;
+    return user;
   }
 }
