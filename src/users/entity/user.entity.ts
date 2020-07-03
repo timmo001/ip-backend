@@ -35,7 +35,7 @@ export class UserEntity {
   updatedOn?: Date;
 
   @BeforeInsert()
-  async hashPassword() {
+  async hashPassword(): Promise<void> {
     this.password = await hash(this.password, 10);
   }
 }

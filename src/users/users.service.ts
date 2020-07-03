@@ -1,12 +1,14 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, FindOneOptions } from 'typeorm';
+
+import { comparePasswords } from '../shared/utils';
+import { CreateUserDto } from './dto/user.create.dto';
+import { JwtPayload } from '../auth/interfaces/payload.interface';
+import { LoginUserDto } from './dto/user.login.dto';
+import { toUserDto } from '../shared/mapper';
 import { UserDto } from './dto/user.dto';
 import { UserEntity } from '../users/entity/user.entity';
-import { toUserDto } from '../shared/mapper';
-import { CreateUserDto } from './dto/user.create.dto';
-import { LoginUserDto } from './dto/user.login.dto';
-import { comparePasswords } from '../shared/utils';
 
 @Injectable()
 export class UsersService {
@@ -15,7 +17,7 @@ export class UsersService {
     private readonly userRepo: Repository<UserEntity>
   ) {}
 
-  async findOne(options?: object): Promise<UserDto> {
+  async findOne(options?: FindOneOptions<UserEntity>): Promise<UserDto> {
     const user = await this.userRepo.findOne(options);
     return toUserDto(user);
   }
@@ -37,7 +39,7 @@ export class UsersService {
     return toUserDto(user);
   }
 
-  async findByPayload({ username }: any): Promise<UserDto> {
+  async findByPayload({ username }: JwtPayload): Promise<UserDto> {
     return await this.findOne({ where: { username } });
   }
 
@@ -55,10 +57,5 @@ export class UsersService {
     await this.userRepo.save(user);
 
     return toUserDto(user);
-  }
-
-  private _sanitizeUser(user: UserEntity) {
-    delete user.password;
-    return user;
   }
 }
