@@ -2,11 +2,7 @@ import { Controller, Body, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
 import { EventsService } from './events.service';
-
-export interface EventPayload {
-  type: 'service';
-  serviceKey?: string;
-}
+import EventPayload from '../types/EventPayload';
 
 @Controller('events')
 export class EventsController {

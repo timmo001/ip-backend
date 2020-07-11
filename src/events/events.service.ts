@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import * as WebSocket from 'ws';
 
 import { ConfigService, Config } from '../config/config.service';
-import { EventPayload } from './events.controller';
+import EventPayload from '../types/EventPayload';
 
 @Injectable()
 export class EventsService {
