@@ -9,7 +9,7 @@ export class EventsController {
   constructor(private eventsService: EventsService) {}
 
   @UseGuards(AuthGuard())
-  @Post()
+  @Post('send')
   public async postEvent(@Body() event: EventPayload): Promise<EventPayload> {
     return await this.eventsService.sendEvent(event);
   }
