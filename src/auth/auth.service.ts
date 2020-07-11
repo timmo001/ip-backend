@@ -1,6 +1,7 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
+import { ConfigService } from '../config/config.service';
 import { CreateUserDto } from '../users/dto/user.create.dto';
 import { JwtPayload } from './interfaces/payload.interface';
 import { LoginStatus } from './interfaces/login-status.interface';
@@ -8,7 +9,8 @@ import { LoginUserDto } from '../users/dto/user.login.dto';
 import { RegistrationStatus } from './interfaces/regisration-status.interface';
 import { UserDto } from '../users/dto/user.dto';
 import { UsersService } from '../users/users.service';
-import config from '../config';
+
+const config = new ConfigService().getConfig();
 
 @Injectable()
 export class AuthService {
@@ -57,7 +59,7 @@ export class AuthService {
   }
 
   private _createToken({ username }: UserDto): any {
-    const expiresIn = config.tokenExpiry;
+    const expiresIn = config.backend.token_expiry;
 
     const user: JwtPayload = { username };
     const accessToken = this.jwtService.sign(user);

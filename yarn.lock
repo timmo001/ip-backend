@@ -7207,6 +7207,7 @@ fsevents@^1.2.7:
     tsconfig-paths: 3.9.0
     typeorm: 0.2.25
     typescript: 3.9.6
+    yaml: 1.10.0
   languageName: unknown
   linkType: soft
 
@@ -10811,7 +10812,7 @@ typescript@^3.6.4:
   languageName: node
   linkType: hard
 
-"yaml@npm:^1.7.2":
+"yaml@npm:1.10.0, yaml@npm:^1.7.2":
   version: 1.10.0
   resolution: "yaml@npm:1.10.0"
   checksum: d4cc9f9724f8d0aebc2cf52e4e6aa7059f12d50deb54b5225d103462fb2af36e5c0bb419101ca4b1f0cd3b4db9e4139cf2c690e863ac6227648d39d6f4e2522c

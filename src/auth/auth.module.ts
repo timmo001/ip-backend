@@ -4,9 +4,11 @@ import { PassportModule } from '@nestjs/passport';
 
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
+import { ConfigService } from '../config/config.service';
 import { JwtStrategy } from './jwt.strategy';
 import { UsersModule } from '../users/users.module';
-import config from '../config';
+
+const config = new ConfigService().getConfig();
 
 @Module({
   imports: [
@@ -17,9 +19,9 @@ import config from '../config';
       session: false,
     }),
     JwtModule.register({
-      secret: config.secret,
+      secret: config.backend.secret,
       signOptions: {
-        expiresIn: config.tokenExpiry,
+        expiresIn: config.backend.token_expiry,
       },
     }),
   ],
