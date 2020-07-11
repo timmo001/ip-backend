@@ -10,5 +10,6 @@ import { UsersModule } from '../users/users.module';
   imports: [TypeOrmModule.forRoot(), AuthModule, UsersModule],
   controllers: [ConfigController],
   providers: [ConfigService],
+  exports: [ConfigService],
 })
 export class ConfigModule {}

@@ -1,7 +1,7 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
-import { ConfigService } from '../config/config.service';
+import { ConfigService, Config } from '../config/config.service';
 import { CreateUserDto } from '../users/dto/user.create.dto';
 import { JwtPayload } from './interfaces/payload.interface';
 import { LoginStatus } from './interfaces/login-status.interface';
@@ -10,14 +10,16 @@ import { RegistrationStatus } from './interfaces/regisration-status.interface';
 import { UserDto } from '../users/dto/user.dto';
 import { UsersService } from '../users/users.service';
 
-const config = new ConfigService().getConfig();
-
 @Injectable()
 export class AuthService {
+  private config: Config;
+
   constructor(
     private readonly usersService: UsersService,
     private readonly jwtService: JwtService
-  ) {}
+  ) {
+    this.config = new ConfigService().getConfig();
+  }
 
   async register(userDto: CreateUserDto): Promise<RegistrationStatus> {
     let status: RegistrationStatus = {
@@ -59,7 +61,7 @@ export class AuthService {
   }
 
   private _createToken({ username }: UserDto): any {
-    const expiresIn = config.backend.token_expiry;
+    const expiresIn = this.config.backend.token_expiry;
 
     const user: JwtPayload = { username };
     const accessToken = this.jwtService.sign(user);

@@ -1298,6 +1298,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/ws@npm:7.2.6":
+  version: 7.2.6
+  resolution: "@types/ws@npm:7.2.6"
+  dependencies:
+    "@types/node": "*"
+  checksum: 2f7c358c4b2798f1885c3edecf4b09ecfa35933eff0c37bf8b99eab722032db5c1ab9e26899d13f035a8cf1d92a681578016c8837c5e6725892c24ee10f2f63f
+  languageName: node
+  linkType: hard
+
 "@types/yargs-parser@npm:*":
   version: 15.0.0
   resolution: "@types/yargs-parser@npm:15.0.0"
@@ -7181,6 +7190,7 @@ fsevents@^1.2.7:
     "@types/passport-local": 1.0.33
     "@types/socket.io": 2.1.8
     "@types/supertest": 2.0.10
+    "@types/ws": 7.2.6
     "@typescript-eslint/eslint-plugin": 3.6.0
     "@typescript-eslint/parser": 3.6.0
     bcrypt: 5.0.0
@@ -7207,6 +7217,7 @@ fsevents@^1.2.7:
     tsconfig-paths: 3.9.0
     typeorm: 0.2.25
     typescript: 3.9.6
+    ws: 7.3.1
     yaml: 1.10.0
   languageName: unknown
   linkType: soft
@@ -10703,6 +10714,21 @@ typescript@^3.6.4:
   dependencies:
     mkdirp: ^0.5.1
   checksum: e8f8fddefea3eaaf4c8bacf072161f82d5e05c5fb8f003e1bae52673b94b88a4954d97688c7403a20301d2f6e9f61363b1affe74286b499b39bc0c42f17a56cb
+  languageName: node
+  linkType: hard
+
+"ws@npm:7.3.1":
+  version: 7.3.1
+  resolution: "ws@npm:7.3.1"
+  peerDependencies:
+    bufferutil: ^4.0.1
+    utf-8-validate: ^5.0.2
+  peerDependenciesMeta:
+    bufferutil:
+      optional: true
+    utf-8-validate:
+      optional: true
+  checksum: 9302f1f6658c5f3ecd6d35d1c5a38ad708d8e5404cba66ad884ead072ef7a4c948f54d728649a2cb3af1865ca0e15f903e0e2ac9df30c1a0d4dd00d00e6e0d4a
   languageName: node
   linkType: hard
 
