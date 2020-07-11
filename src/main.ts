@@ -12,5 +12,6 @@ async function bootstrap() {
   app.use(helmet());
 
   await app.listen(config.backend.api_port);
+  console.log('Server running on port', config.backend.api_port);
 }
 bootstrap();

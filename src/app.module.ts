@@ -11,11 +11,11 @@ import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(),
     AuthModule,
     ConfigModule,
     EventsModule,
     ServicesModule,
+    TypeOrmModule.forRoot(),
     UsersModule,
   ],
   controllers: [AppController],

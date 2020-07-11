@@ -4,7 +4,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { ServicesService } from './services.service';
 import Service from '../types/Service';
 
-@Controller('services')
+@Controller('api/services')
 export class ServicesController {
   constructor(private servicesService: ServicesService) {}
 

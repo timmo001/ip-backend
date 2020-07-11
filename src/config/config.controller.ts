@@ -1,15 +1,17 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { Controller, Get, UseGuards } from '@nestjs/common';
+import { MessageBody, SubscribeMessage } from '@nestjs/websockets';
 
 import { ConfigService, Config } from './config.service';
 
-@Controller('config')
+@Controller('api/config')
 export class ConfigController {
   constructor(private configService: ConfigService) {}
 
   @UseGuards(AuthGuard())
   @Get()
-  public async getConfig(): Promise<Config> {
-    return await this.configService.getConfig();
+  @SubscribeMessage('config')
+  public getConfig(): Config {
+    return this.configService.getConfig();
   }
 }

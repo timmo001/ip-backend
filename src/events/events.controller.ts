@@ -4,7 +4,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { EventsService } from './events.service';
 import EventPayload from '../types/EventPayload';
 
-@Controller('events')
+@Controller('api/events')
 export class EventsController {
   constructor(private eventsService: EventsService) {}
 
