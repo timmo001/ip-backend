@@ -1,8 +1,9 @@
 import { AuthGuard } from '@nestjs/passport';
 import { Controller, Get, UseGuards } from '@nestjs/common';
-import { MessageBody, SubscribeMessage } from '@nestjs/websockets';
+// import { SubscribeMessage, WsResponse } from '@nestjs/websockets';
 
 import { ConfigService, Config } from './config.service';
+// import { Client } from 'socket.io';
 
 @Controller('api/config')
 export class ConfigController {
@@ -10,8 +11,13 @@ export class ConfigController {
 
   @UseGuards(AuthGuard())
   @Get()
-  @SubscribeMessage('config')
   public getConfig(): Config {
     return this.configService.getConfig();
   }
+
+  // @UseGuards(AuthGuard())
+  // @SubscribeMessage('config')
+  // public wsConfig(client: Client, data: unknown): WsResponse<Config> {
+  //   return { event: 'config', data: this.configService.getConfig() };
+  // }
 }
