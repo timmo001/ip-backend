@@ -2,7 +2,7 @@ import { Controller, Body, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
 import { EventsService } from './events.service';
-import EventPayload from '../types/EventPayload';
+import { EventDto } from './dto/event.dto';
 
 @Controller('api/events')
 export class EventsController {
@@ -10,7 +10,7 @@ export class EventsController {
 
   @UseGuards(AuthGuard())
   @Post('send')
-  public async postEvent(@Body() event: EventPayload): Promise<EventPayload> {
+  public async postEvent(@Body() event: EventDto): Promise<EventDto> {
     return await this.eventsService.sendEvent(event);
   }
 }

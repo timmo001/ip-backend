@@ -743,6 +743,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nestjs/mapped-types@npm:0.0.5":
+  version: 0.0.5
+  resolution: "@nestjs/mapped-types@npm:0.0.5"
+  peerDependencies:
+    "@nestjs/common": ^7.0.8
+    class-transformer: ^0.2.3
+    class-validator: ^0.11.1 || ^0.12.0
+    reflect-metadata: ^0.1.12
+  checksum: bf954e22d129f12a1443d02d25c46fd594eb847d8ad2dca5c98b06cde470b9dab8c077abdf269098008736d1a041b49ceab1c74abff31f493356164976bdf36d
+  languageName: node
+  linkType: hard
+
 "@nestjs/passport@npm:7.1.0":
   version: 7.1.0
   resolution: "@nestjs/passport@npm:7.1.0"
@@ -793,6 +805,21 @@ __metadata:
   peerDependencies:
     typescript: ^3.4.5
   checksum: d2e6097a9c8dee8609f033a402d18a02d8c4906989286d5981b3cd13be91762a73e385ce336d8d568b1113022f223248569eeba9a6d4d4c69abdd3049f5b0849
+  languageName: node
+  linkType: hard
+
+"@nestjs/swagger@npm:4.5.12":
+  version: 4.5.12
+  resolution: "@nestjs/swagger@npm:4.5.12"
+  dependencies:
+    "@nestjs/mapped-types": 0.0.5
+    lodash: 4.17.15
+    path-to-regexp: 3.2.0
+  peerDependencies:
+    "@nestjs/common": ^6.8.0 || ^7.0.0
+    "@nestjs/core": ^6.8.0 || ^7.0.0
+    reflect-metadata: ^0.1.12
+  checksum: 15fbe090720d3b6f5bf525b297249080dbd659ece1377cc0837b1b3496e31d922fed595d8e24a755ebb4c8123fa84ac001cf380933cd9b2c44a5451c8a5c54d7
   languageName: node
   linkType: hard
 
@@ -6619,7 +6646,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.13, lodash@npm:^4.17.14, lodash@npm:^4.17.15":
+"lodash@npm:4.17.15, lodash@npm:^4.17.13, lodash@npm:^4.17.14, lodash@npm:^4.17.15":
   version: 4.17.15
   resolution: "lodash@npm:4.17.15"
   checksum: aec3fbb7570aa67bda500b8299b1b1821d60646bede87f76a74dfcc7666ab3445267d734ec71424d70809d52ad67a1356fab5ab694a3faa1908d68e9d48f00f5
@@ -7188,6 +7215,7 @@ fsevents@^1.2.7:
     "@nestjs/platform-express": 7.3.2
     "@nestjs/platform-socket.io": 7.3.2
     "@nestjs/schematics": 7.0.1
+    "@nestjs/swagger": 4.5.12
     "@nestjs/testing": 7.3.2
     "@nestjs/typeorm": 7.1.0
     "@nestjs/websockets": 7.3.2
@@ -7210,6 +7238,7 @@ fsevents@^1.2.7:
     eslint-config-prettier: 6.11.0
     eslint-plugin-import: 2.22.0
     eslint-plugin-prettier: 3.1.4
+    express: 4.17.1
     helmet: 3.23.3
     jest: 26.1.0
     mariadb: 2.4.1
@@ -7222,6 +7251,7 @@ fsevents@^1.2.7:
     rimraf: 3.0.2
     rxjs: 6.6.0
     supertest: 4.0.2
+    swagger-ui-express: 4.1.4
     ts-jest: 26.1.1
     ts-loader: 8.0.0
     ts-node: 8.10.2
@@ -9651,6 +9681,24 @@ fsevents@^1.2.7:
     has-flag: ^4.0.0
     supports-color: ^7.0.0
   checksum: 8b3b6d71ee298d7f9a3ff4bfb928bd037c0b691b01bdfebb77deb3384976cd78c180d564dc3689ce5fe254d323252f7064efa1364bf24ab81efa6b080e51eddb
+  languageName: node
+  linkType: hard
+
+"swagger-ui-dist@npm:^3.18.1":
+  version: 3.28.0
+  resolution: "swagger-ui-dist@npm:3.28.0"
+  checksum: b82d3b877dc847f834241c1c60911d0696fa040b97b2e3f276b21aefe9dd672fdf79f9f2f812b5a474c6a830111bd24aae3302c8950304b77dfb9481345c46cb
+  languageName: node
+  linkType: hard
+
+"swagger-ui-express@npm:4.1.4":
+  version: 4.1.4
+  resolution: "swagger-ui-express@npm:4.1.4"
+  dependencies:
+    swagger-ui-dist: ^3.18.1
+  peerDependencies:
+    express: ">=4.0.0"
+  checksum: bbf95b5fcf67b7a51944bac0205a628f7dcabf290a7ca6ca7197274062fdd321fb9c3f7ff3716a9d0dec41359502096ccef56f6cedd277819c851c08e6f085d8
   languageName: node
   linkType: hard
 
