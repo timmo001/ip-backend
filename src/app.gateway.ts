@@ -1,13 +1,13 @@
-import { AuthGuard } from '@nestjs/passport';
+// import { AuthGuard } from '@nestjs/passport';
 import {
   OnGatewayConnection,
   OnGatewayDisconnect,
   OnGatewayInit,
-  SubscribeMessage,
+  // SubscribeMessage,
   WebSocketGateway,
   WebSocketServer,
 } from '@nestjs/websockets';
-import { Logger, UseGuards } from '@nestjs/common';
+import { Logger } from '@nestjs/common';
 import { Socket, Server } from 'socket.io';
 
 @WebSocketGateway()
@@ -18,10 +18,10 @@ export class AppGateway
   private logger: Logger = new Logger(AppGateway.name);
 
   // @UseGuards(AuthGuard())
-  @SubscribeMessage('logs')
-  handleMessage(client: Socket, _payload: string): void {
-    client.emit('logs', 'log message');
-  }
+  // @SubscribeMessage('logs')
+  // handleMessage(client: Socket, _payload: string): void {
+  //   client.emit('logs', 'log message');
+  // }
 
   afterInit(): void {
     this.logger.log('Initilized');
