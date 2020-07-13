@@ -3,6 +3,7 @@ import * as fs from 'fs';
 
 import { ConfigService, Config } from '../config/config.service';
 import { readYAML, saveYAML } from '../shared/utils';
+import Params from '../types/Params';
 import Service from '../types/Service';
 
 @Injectable()
@@ -21,7 +22,7 @@ export class ServicesService {
       return services_dir.map(
         (file: string) =>
           file.endsWith('.yaml') && {
-            key: file.replace('.yaml', ''),
+            id: file.replace('.yaml', ''),
             ...readYAML(`${this.config.services_directory}/${file}`),
           }
       );
@@ -29,10 +30,16 @@ export class ServicesService {
     return null;
   }
 
-  saveService(service: Service): Service | null {
-    const path = `${this.config.services_directory}/${service.key}.yaml`;
-    delete service.key;
+  deleteService(id: string): Params | null {
+    const path = `${this.config.services_directory}/${id}.yaml`;
+    fs.unlinkSync(path);
+    return { id };
+  }
+
+  saveService(id: string, service: Service): Params | null {
+    const path = `${this.config.services_directory}/${id}.yaml`;
+    delete service.id;
     saveYAML(path, service);
-    return service;
+    return { id };
   }
 }

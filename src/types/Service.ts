@@ -2,7 +2,7 @@ import Action from './Action';
 import Condition from './Condition';
 
 export default interface Service {
-  key: string;
+  id: string;
   name: string;
   description?: string;
   conditions: Condition[];

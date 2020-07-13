@@ -1,12 +1,29 @@
-import { Controller, Body, Get, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Post,
+  Put,
+  UseGuards,
+  Param,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { v4 as uuidv4 } from 'uuid';
 
 import { ServicesService } from './services.service';
+import Params from '../types/Params';
 import Service from '../types/Service';
 
 @Controller('api/services')
 export class ServicesController {
   constructor(private servicesService: ServicesService) {}
+
+  @UseGuards(AuthGuard())
+  @Delete(':id')
+  public deleteService(@Param() params: Params): Params | null {
+    return this.servicesService.deleteService(params.id);
+  }
 
   @UseGuards(AuthGuard())
   @Get()
@@ -15,8 +32,31 @@ export class ServicesController {
   }
 
   @UseGuards(AuthGuard())
-  @Post('save')
-  public saveService(@Body() service: Service): Service | null {
-    return this.servicesService.saveService(service);
+  @Get(':id')
+  public getService(@Param() params: Params): Service | null {
+    const services: Service[] = this.servicesService.getServices();
+    return services.find((service: Service) => service.id === params.id);
+  }
+
+  @UseGuards(AuthGuard())
+  @Post()
+  public addService(@Body() service: Service): Params | null {
+    const services: Service[] = this.servicesService.getServices();
+    let id: string;
+    while (true) {
+      id = uuidv4();
+      if (services.findIndex((service: Service) => service.id === id) === -1)
+        break;
+    }
+    return this.servicesService.saveService(id, service);
+  }
+
+  @UseGuards(AuthGuard())
+  @Put(':id')
+  public updateService(
+    @Param() params: Params,
+    @Body() service: Service
+  ): Params | null {
+    return this.servicesService.saveService(params.id, service);
   }
 }
