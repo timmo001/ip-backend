@@ -1,15 +1,38 @@
+import * as mariadb from 'mariadb';
+import { Connection, Pool } from 'mariadb';
 import { Injectable } from '@nestjs/common';
 import * as WebSocket from 'ws';
 
-import { ConfigService, Config } from '../config/config.service';
+import { ConfigService } from '../config/config.service';
 import { EventDto } from './dto/event.dto';
+import Config from '../types/Config';
+import Event from '../types/Event';
 
 @Injectable()
 export class EventsService {
   private config: Config;
+  private connection: Connection;
 
   constructor() {
     this.config = new ConfigService().getConfig();
+    this.init();
+  }
+
+  async init(): Promise<void> {
+    const pool: Pool = mariadb.createPool({
+      database: this.config.database.database,
+      host: this.config.database.host,
+      password: this.config.database.password,
+      user: this.config.database.username,
+    });
+    this.connection = await pool.getConnection();
+  }
+
+  async getEvents(): Promise<Event[]> {
+    // return [];
+    return await this.connection.query(
+      'SELECT id,service,status,started,updated,completed,message FROM events;'
+    );
   }
 
   async sendEvent(event: EventDto): Promise<EventDto> {

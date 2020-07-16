@@ -1,9 +1,9 @@
 import {
-  Entity,
-  PrimaryGeneratedColumn,
+  BeforeInsert,
   Column,
   CreateDateColumn,
-  BeforeInsert,
+  Entity,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
 import { hash } from 'bcrypt';
 

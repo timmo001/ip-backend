@@ -8,7 +8,7 @@ import { JwtPayload } from '../auth/interfaces/payload.interface';
 import { LoginUserDto } from './dto/user.login.dto';
 import { toUserDto } from '../shared/mapper';
 import { UserDto } from './dto/user.dto';
-import { UserEntity } from '../users/entity/user.entity';
+import { UserEntity } from './entity/user.entity';
 
 @Injectable()
 export class UsersService {

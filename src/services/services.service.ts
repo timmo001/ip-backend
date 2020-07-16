@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import * as fs from 'fs';
 
-import { ConfigService, Config } from '../config/config.service';
+import { ConfigService } from '../config/config.service';
 import { readYAML, saveYAML } from '../shared/utils';
+import Config from '../types/Config';
 import Params from '../types/Params';
 import Service from '../types/Service';
 

@@ -2,7 +2,8 @@ import { AuthGuard } from '@nestjs/passport';
 import { Controller, Get, UseGuards } from '@nestjs/common';
 // import { SubscribeMessage, WsResponse } from '@nestjs/websockets';
 
-import { ConfigService, Config } from './config.service';
+import { ConfigService } from './config.service';
+import Config from '../types/Config';
 // import { Client } from 'socket.io';
 
 @Controller('api/config')
