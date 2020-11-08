@@ -4,9 +4,9 @@ import { Injectable } from '@nestjs/common';
 import * as WebSocket from 'ws';
 
 import { ConfigService } from '../config/config.service';
-import { EventDto } from './dto/event.dto';
 import Config from '../types/Config';
 import Event from '../types/Event';
+import EventResponse from 'src/types/EventResponse';
 
 @Injectable()
 export class EventsService {
@@ -35,7 +35,7 @@ export class EventsService {
     );
   }
 
-  async sendEvent(event: EventDto): Promise<EventDto> {
+  async sendEvent(event: Event): Promise<EventResponse> {
     const url = `ws://${this.config.core.host}:${this.config.core.socket_port}`;
     const ws = new WebSocket(url);
     ws.on('open', () => {

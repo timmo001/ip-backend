@@ -1,8 +1,7 @@
+import Data from "./Data";
+
 export default interface Event {
-  id: string;
+  id?: string;
   service: string;
-  status: string;
-  started: string;
-  updated: string;
-  completed: string;
+  data?: Data;
 }

@@ -2,7 +2,6 @@ import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
 import Event from '../types/Event';
-import { EventDto } from './dto/event.dto';
 import { EventsService } from './events.service';
 
 @Controller('backend/events')
@@ -17,7 +16,7 @@ export class EventsController {
 
   @UseGuards(AuthGuard())
   @Post()
-  public async postEvent(@Body() event: EventDto): Promise<EventDto> {
+  public async postEvent(@Body() event: Event): Promise<Event> {
     return await this.eventsService.sendEvent(event);
   }
 }
