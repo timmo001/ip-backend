@@ -10,6 +10,7 @@ import { ConfigService } from './config/config.service';
 import { EventsModule } from './events/events.module';
 import { ServicesModule } from './services/services.module';
 import { UsersModule } from './users/users.module';
+import { ApiModule } from './api/api.module';
 
 const config = new ConfigService().getConfig();
 
@@ -31,6 +32,7 @@ const config = new ConfigService().getConfig();
     EventsModule,
     ServicesModule,
     UsersModule,
+    ApiModule,
   ],
   controllers: [AppController],
   providers: [AppGateway, AppService],

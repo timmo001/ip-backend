@@ -1,3 +1,6 @@
 export default interface Params {
-  id: string;
+  endpoint?: string;
+  environment?: string;
+  id?: string;
+  version?: string;
 }
