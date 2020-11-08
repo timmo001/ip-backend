@@ -20,10 +20,7 @@ export class EventsService {
   constructor() {
     this.config = new ConfigService().getConfig();
     this.init();
-    this.websocket = new WebSocket(
-      `ws://${this.config.core.host}:${this.config.core.socket_port}`
-    );
-    this.websocket.on('open', this.websocketOpened);
+    this.startWebsocketConnection();
   }
 
   async init(): Promise<void> {
@@ -57,7 +54,22 @@ export class EventsService {
     });
   }
 
+  startWebsocketConnection() {
+    const url = `ws://${this.config.core.host}:${this.config.core.socket_port}`;
+    this.websocket = new WebSocket(url);
+    this.websocket.on('open', this.websocketOpened);
+    this.websocket.on('close', this.websocketClosed);
+    this.websocket.on('error', (error: Generic): void => {
+      this.logger.debug(`WS - error: ${error}`);
+    });
+  }
+
   websocketOpened = (): void => {
     this.logger.debug(`WS - Connected to ${this.websocket.url}`);
+  };
+
+  websocketClosed = (): void => {
+    this.logger.debug(`WS - Connection closed. Reconnecting in 5 seconds..`);
+    setTimeout(() => this.startWebsocketConnection(), 5000);
   };
 }
