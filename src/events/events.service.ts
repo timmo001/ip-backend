@@ -1,21 +1,29 @@
 import * as mariadb from 'mariadb';
 import { Connection, Pool } from 'mariadb';
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import * as WebSocket from 'ws';
 
 import { ConfigService } from '../config/config.service';
 import Config from '../types/Config';
 import Event from '../types/Event';
 import EventResponse from 'src/types/EventResponse';
+import Generic from 'src/types/Generic';
 
 @Injectable()
 export class EventsService {
+  public websocket: WebSocket;
+
   private config: Config;
   private connection: Connection;
+  private logger: Logger = new Logger(EventsService.name);
 
   constructor() {
     this.config = new ConfigService().getConfig();
     this.init();
+    this.websocket = new WebSocket(
+      `ws://${this.config.core.host}:${this.config.core.socket_port}`
+    );
+    this.websocket.on('open', this.websocketOpened);
   }
 
   async init(): Promise<void> {
@@ -36,20 +44,21 @@ export class EventsService {
   }
 
   async sendEvent(event: Event): Promise<EventResponse> {
-    const url = `ws://${this.config.core.host}:${this.config.core.socket_port}`;
-    const ws = new WebSocket(url);
-    ws.on('open', () => {
-      console.log('WS - Connected to', url);
-      ws.send(JSON.stringify({ ...event, token: this.config.token }));
+    this.logger.debug(`sendEvent: ${JSON.stringify(event)}`);
+    this.websocket.send(JSON.stringify({ ...event, token: this.config.token }));
+    return new Promise((resolve, reject) => {
+      this.websocket.on('message', (data: string): void => {
+        this.logger.debug(`WS - message received: ${data}`);
+        resolve(JSON.parse(data));
+      });
+      this.websocket.on('error', (error: Generic): void => {
+        this.logger.debug(`WS - error: ${error}`);
+        reject(error);
+      });
     });
-    ws.on('message', (data: any) => {
-      console.log('WS - message received:', data);
-      ws.close();
-    });
-    ws.on('error', (error: any) => {
-      console.log('WS - error:', error);
-      ws.close();
-    });
-    return event;
   }
+
+  websocketOpened = (): void => {
+    this.logger.debug(`WS - Connected to ${this.websocket.url}`);
+  };
 }

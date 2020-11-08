@@ -24,43 +24,40 @@ export class ApiService {
       service: params.endpoint,
       data: { params, payload: body },
     });
-    if (response.resultOnly) return response;
-    return { ...response, params, body };
+    return response.resultOnly ? response : { ...response, params, body };
   }
 
-  async apiGet(params: Params): Promise<Generic> {
+  async apiGet(params: Params): Promise<ApiResponse> {
     const response: EventResponse = await this.eventsService.sendEvent({
       service: params.endpoint,
       data: { params, payload: null },
     });
-    if (response.resultOnly) return response;
-    return { ...response, params };
+    const test = response;
+    console.log('test:', test);
+    return response.resultOnly ? response : { ...response, params };
   }
 
-  async apiPatch(params: Params, body: Generic): Promise<Generic> {
+  async apiPatch(params: Params, body: Generic): Promise<ApiResponse> {
     const response: EventResponse = await this.eventsService.sendEvent({
       service: params.endpoint,
       data: { params, payload: body },
     });
-    if (response.resultOnly) return response;
-    return { ...response, params, body };
+    return response.resultOnly ? response : { ...response, params, body };
   }
 
-  async apiPost(params: Params, body: Generic): Promise<Generic> {
+  async apiPost(params: Params, body: Generic): Promise<ApiResponse> {
     const response: EventResponse = await this.eventsService.sendEvent({
       service: params.endpoint,
       data: { params, payload: body },
     });
-    if (response.resultOnly) return response;
-    return { ...response, params, body };
+    return response.resultOnly ? response : { ...response, params, body };
   }
 
-  async apiPut(params: Params, body: Generic): Promise<Generic> {
+  async apiPut(params: Params, body: Generic): Promise<ApiResponse> {
     const response: EventResponse = await this.eventsService.sendEvent({
       service: params.endpoint,
       data: { params, payload: body },
     });
-    if (response.resultOnly) return response;
-    return { ...response, params, body };
+    return response.resultOnly ? response : { ...response, params, body };
   }
 }

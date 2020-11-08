@@ -26,153 +26,130 @@ export class ApiController {
 
   @UseGuards(AuthGuard())
   @Delete(':environment/:version/:endpoint')
-  public apiDelete(
+  public async apiDelete(
     @Body() body: Generic,
     @Param() params: Params,
     @Request() request: Request
-  ): ApiResponse | Generic {
+  ): Promise<ApiResponse> {
     this.logger.debug(`apiDelete: ${JSON.stringify(params)}`);
-    const response: ApiResponse | Generic = this.apiService.apiDelete(
-      params,
-      body
-    );
+    const response: ApiResponse = await this.apiService.apiDelete(params, body);
     return response.resultOnly ? response : { ...response, url: request.url };
   }
 
   @UseGuards(AuthGuard())
   @Delete(':environment/:version/:endpoint/:id')
-  public apiDeleteWithId(
+  public async apiDeleteWithId(
     @Body() body: Generic,
     @Param() params: Params,
     @Request() request: Request
-  ): ApiResponse | Generic {
+  ): Promise<ApiResponse> {
     this.logger.debug(`apiDeleteWithId: ${JSON.stringify(params)}`);
-    const response: ApiResponse | Generic = this.apiService.apiDelete(
-      params,
-      body
-    );
+    const response: ApiResponse = await this.apiService.apiDelete(params, body);
     return response.resultOnly ? response : { ...response, url: request.url };
   }
 
   @UseGuards(AuthGuard())
   @Get(':environment/:version/:endpoint')
-  public apiGet(
+  public async apiGet(
     @Param() params: Params,
     @Request() request: Request
-  ): ApiResponse | Generic {
+  ): Promise<ApiResponse> {
     this.logger.debug(`apiGet: ${JSON.stringify(params)}`);
-    const response: ApiResponse | Generic = this.apiService.apiGet(params);
+    const response: ApiResponse = await this.apiService.apiGet(params);
+    this.logger.debug(`response: ${JSON.stringify(response)}`);
     return response.resultOnly ? response : { ...response, url: request.url };
   }
 
   @UseGuards(AuthGuard())
   @Get(':environment/:version/:endpoint/:id')
-  public apiGetWithId(
+  public async apiGetWithId(
     @Param() params: Params,
     @Request() request: Request
-  ): ApiResponse | Generic {
-    this.logger.debug(`apiGetWithId: ${JSON.stringify(params)}`);
-    const response: ApiResponse | Generic = this.apiService.apiGet(params);
+  ): Promise<ApiResponse> {
+    this.logger.debug(`apiGet: ${JSON.stringify(params)}`);
+    const response: ApiResponse = await this.apiService.apiGet(params);
     return response.resultOnly ? response : { ...response, url: request.url };
   }
 
   @UseGuards(AuthGuard())
   @Patch(':environment/:version/:endpoint')
-  public apiPatch(
+  public async apiPatch(
     @Body() body: Generic,
     @Param() params: Params,
     @Request() request: Request
-  ): ApiResponse | Generic {
+  ): Promise<ApiResponse> {
     this.logger.debug(
       `apiPatch: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
     );
-    const response: ApiResponse | Generic = this.apiService.apiPatch(
-      params,
-      body
-    );
+    const response: ApiResponse = await this.apiService.apiPatch(params, body);
     return response.resultOnly ? response : { ...response, url: request.url };
   }
 
   @UseGuards(AuthGuard())
   @Patch(':environment/:version/:endpoint/:id')
-  public apiPatchWithId(
+  public async apiPatchWithId(
     @Body() body: Generic,
     @Param() params: Params,
     @Request() request: Request
-  ): ApiResponse | Generic {
+  ): Promise<ApiResponse> {
     this.logger.debug(
       `apiPatchWithId: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
     );
-    const response: ApiResponse | Generic = this.apiService.apiPatch(
-      params,
-      body
-    );
+    const response: ApiResponse = await this.apiService.apiPatch(params, body);
     return response.resultOnly ? response : { ...response, url: request.url };
   }
 
   @UseGuards(AuthGuard())
   @Post(':environment/:version/:endpoint')
-  public apiPost(
+  public async apiPost(
     @Body() body: Generic,
     @Param() params: Params,
     @Request() request: Request
-  ): ApiResponse | Generic {
+  ): Promise<ApiResponse> {
     this.logger.debug(
       `apiPost: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
     );
-    const response: ApiResponse | Generic = this.apiService.apiPost(
-      params,
-      body
-    );
+    const response: ApiResponse = await this.apiService.apiPost(params, body);
     return response.resultOnly ? response : { ...response, url: request.url };
   }
 
   @UseGuards(AuthGuard())
   @Post(':environment/:version/:endpoint/:id')
-  public apiPostWithId(
+  public async apiPostWithId(
     @Body() body: Generic,
     @Param() params: Params,
     @Request() request: Request
-  ): ApiResponse | Generic {
+  ): Promise<ApiResponse> {
     this.logger.debug(
       `apiPostWithId: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
     );
-    const response: ApiResponse | Generic = this.apiService.apiPost(
-      params,
-      body
-    );
+    const response: ApiResponse = await this.apiService.apiPost(params, body);
     return response.resultOnly ? response : { ...response, url: request.url };
   }
 
   @UseGuards(AuthGuard())
   @Put(':environment/:version/:endpoint')
-  public apiPut(
+  public async apiPut(
     @Body() body: Generic,
     @Param() params: Params,
     @Request() request: Request
-  ): ApiResponse | Generic {
+  ): Promise<ApiResponse> {
     this.logger.debug(`apiPut: ${JSON.stringify(params)} - ${body}`);
-    const response: ApiResponse | Generic = this.apiService.apiPut(
-      params,
-      body
-    );
+    const response: ApiResponse = await this.apiService.apiPut(params, body);
     return response.resultOnly ? response : { ...response, url: request.url };
   }
 
   @UseGuards(AuthGuard())
   @Put(':environment/:version/:endpoint/:id')
-  public apiPutWithId(
+  public async apiPutWithId(
     @Body() body: Generic,
     @Param() params: Params,
     @Request() request: Request
-  ): ApiResponse | Generic {
+  ): Promise<ApiResponse> {
     this.logger.debug(
       `apiPutWithId: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
     );
-    const response: ApiResponse | Generic = this.apiService.apiPut(
-      params,
-      body
-    );
+    const response: ApiResponse = await this.apiService.apiPut(params, body);
     return response.resultOnly ? response : { ...response, url: request.url };
   }
 }
