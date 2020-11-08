@@ -30,7 +30,7 @@ export class ApiService {
   async apiGet(params: Params): Promise<ApiResponse> {
     const response: EventResponse = await this.eventsService.sendEvent({
       service: params.endpoint,
-      data: { params, payload: null },
+      data: { params },
     });
     const test = response;
     console.log('test:', test);
