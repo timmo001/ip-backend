@@ -33,7 +33,9 @@ export class ApiController {
   ): Promise<ApiResponse> {
     this.logger.debug(`apiDelete: ${JSON.stringify(params)}`);
     const response: ApiResponse = await this.apiService.apiDelete(params, body);
-    return response.resultOnly ? response : { ...response, url: request.url };
+    return response.resultOnly
+      ? response
+      : { ...response, request: { method: request.method, url: request.url } };
   }
 
   @UseGuards(AuthGuard())
@@ -45,7 +47,9 @@ export class ApiController {
   ): Promise<ApiResponse> {
     this.logger.debug(`apiDeleteWithId: ${JSON.stringify(params)}`);
     const response: ApiResponse = await this.apiService.apiDelete(params, body);
-    return response.resultOnly ? response : { ...response, url: request.url };
+    return response.resultOnly
+      ? response
+      : { ...response, request: { method: request.method, url: request.url } };
   }
 
   @UseGuards(AuthGuard())
@@ -57,7 +61,9 @@ export class ApiController {
     this.logger.debug(`apiGet: ${JSON.stringify(params)}`);
     const response: ApiResponse = await this.apiService.apiGet(params);
     this.logger.debug(`response: ${JSON.stringify(response)}`);
-    return response.resultOnly ? response : { ...response, url: request.url };
+    return response.resultOnly
+      ? response
+      : { ...response, request: { method: request.method, url: request.url } };
   }
 
   @UseGuards(AuthGuard())
@@ -68,7 +74,9 @@ export class ApiController {
   ): Promise<ApiResponse> {
     this.logger.debug(`apiGet: ${JSON.stringify(params)}`);
     const response: ApiResponse = await this.apiService.apiGet(params);
-    return response.resultOnly ? response : { ...response, url: request.url };
+    return response.resultOnly
+      ? response
+      : { ...response, request: { method: request.method, url: request.url } };
   }
 
   @UseGuards(AuthGuard())
@@ -82,7 +90,9 @@ export class ApiController {
       `apiPatch: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
     );
     const response: ApiResponse = await this.apiService.apiPatch(params, body);
-    return response.resultOnly ? response : { ...response, url: request.url };
+    return response.resultOnly
+      ? response
+      : { ...response, request: { method: request.method, url: request.url } };
   }
 
   @UseGuards(AuthGuard())
@@ -96,7 +106,9 @@ export class ApiController {
       `apiPatchWithId: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
     );
     const response: ApiResponse = await this.apiService.apiPatch(params, body);
-    return response.resultOnly ? response : { ...response, url: request.url };
+    return response.resultOnly
+      ? response
+      : { ...response, request: { method: request.method, url: request.url } };
   }
 
   @UseGuards(AuthGuard())
@@ -110,7 +122,9 @@ export class ApiController {
       `apiPost: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
     );
     const response: ApiResponse = await this.apiService.apiPost(params, body);
-    return response.resultOnly ? response : { ...response, url: request.url };
+    return response.resultOnly
+      ? response
+      : { ...response, request: { method: request.method, url: request.url } };
   }
 
   @UseGuards(AuthGuard())
@@ -124,7 +138,9 @@ export class ApiController {
       `apiPostWithId: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
     );
     const response: ApiResponse = await this.apiService.apiPost(params, body);
-    return response.resultOnly ? response : { ...response, url: request.url };
+    return response.resultOnly
+      ? response
+      : { ...response, request: { method: request.method, url: request.url } };
   }
 
   @UseGuards(AuthGuard())
@@ -136,7 +152,9 @@ export class ApiController {
   ): Promise<ApiResponse> {
     this.logger.debug(`apiPut: ${JSON.stringify(params)} - ${body}`);
     const response: ApiResponse = await this.apiService.apiPut(params, body);
-    return response.resultOnly ? response : { ...response, url: request.url };
+    return response.resultOnly
+      ? response
+      : { ...response, request: { method: request.method, url: request.url } };
   }
 
   @UseGuards(AuthGuard())
@@ -150,6 +168,8 @@ export class ApiController {
       `apiPutWithId: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
     );
     const response: ApiResponse = await this.apiService.apiPut(params, body);
-    return response.resultOnly ? response : { ...response, url: request.url };
+    return response.resultOnly
+      ? response
+      : { ...response, request: { method: request.method, url: request.url } };
   }
 }

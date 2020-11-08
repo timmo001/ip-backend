@@ -5,5 +5,5 @@ import Params from './Params';
 export default interface ApiResponse extends EventResponse {
   body?: Generic;
   params?: Params;
-  url?: string;
+  request?: { method: string; url: string };
 }

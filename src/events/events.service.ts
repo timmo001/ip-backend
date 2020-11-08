@@ -37,7 +37,6 @@ export class EventsService {
   }
 
   async getEvents(): Promise<Event[]> {
-    // return [];
     return await this.connection.query(
       'SELECT id,service,status,started,updated,completed,message FROM events;'
     );

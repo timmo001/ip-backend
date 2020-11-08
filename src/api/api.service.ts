@@ -33,7 +33,6 @@ export class ApiService {
       data: { params },
     });
     const test = response;
-    console.log('test:', test);
     return response.resultOnly ? response : { ...response, params };
   }
 
