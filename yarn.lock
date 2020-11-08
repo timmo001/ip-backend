@@ -564,15 +564,15 @@
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/@nestjs/passport/-/passport-7.1.0.tgz#04cbb6dec4b6fd92b943e131a2ad89da42c2a9f0"
 
-"@nestjs/platform-express@7.3.2":
-  version "7.3.2"
-  resolved "https://registry.yarnpkg.com/@nestjs/platform-express/-/platform-express-7.3.2.tgz#82175751e2d776e854efe48316efa0564bb36352"
+"@nestjs/platform-express@7.5.1":
+  version "7.5.1"
+  resolved "https://registry.yarnpkg.com/@nestjs/platform-express/-/platform-express-7.5.1.tgz#aa03c221bb7b0d02e104b00df1c3936653329a39"
   dependencies:
     body-parser "1.19.0"
     cors "2.8.5"
     express "4.17.1"
     multer "1.4.2"
-    tslib "2.0.0"
+    tslib "2.0.3"
 
 "@nestjs/platform-socket.io@7.3.2":
   version "7.3.2"
@@ -6947,7 +6947,7 @@ tslib@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.0.tgz#18d13fc2dce04051e20f074cc8387fd8089ce4f3"
 
-tslib@>=1.9.0:
+tslib@2.0.3, tslib@>=1.9.0:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.3.tgz#8e0741ac45fc0c226e58a17bfc3e64b9bc6ca61c"
 
