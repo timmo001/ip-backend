@@ -5,7 +5,7 @@ import Event from '../types/Event';
 import { EventDto } from './dto/event.dto';
 import { EventsService } from './events.service';
 
-@Controller('api/events')
+@Controller('backend/events')
 export class EventsController {
   constructor(private eventsService: EventsService) {}
 

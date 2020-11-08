@@ -23,7 +23,7 @@ interface RequestExt extends Request {
   user: UserEntity;
 }
 
-@Controller('api/auth')
+@Controller('backend/auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 

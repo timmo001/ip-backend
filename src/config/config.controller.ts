@@ -6,7 +6,7 @@ import { ConfigService } from './config.service';
 import Config from '../types/Config';
 // import { Client } from 'socket.io';
 
-@Controller('api/config')
+@Controller('backend/config')
 export class ConfigController {
   constructor(private configService: ConfigService) {}
 

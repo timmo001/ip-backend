@@ -16,7 +16,7 @@ import { ServicesService } from './services.service';
 import Params from '../types/Params';
 import Service from '../types/Service';
 
-@Controller('api/services')
+@Controller('backend/services')
 export class ServicesController {
   private logger: Logger = new Logger(ServicesController.name);
 
