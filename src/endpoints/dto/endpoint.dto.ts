@@ -8,6 +8,9 @@ export class EndpointDto {
   endpoint: string;
 
   @IsNotEmpty()
+  service: string;
+
+  @IsNotEmpty()
   name: string;
 
   @IsNotEmpty()

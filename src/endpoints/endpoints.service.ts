@@ -1,6 +1,11 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, FindManyOptions, FindOneOptions } from 'typeorm';
+import {
+  Repository,
+  FindManyOptions,
+  FindOneOptions,
+  UpdateResult,
+} from 'typeorm';
 
 import { EndpointDto } from './dto/endpoint.dto';
 import { EndpointEntity } from './entity/endpoint.entity';
@@ -41,5 +46,10 @@ export class EndpointsService {
     await this.endpointRepo.save(endpoint);
 
     return endpoint;
+  }
+
+  async update(id: string, endpointDto: EndpointDto): Promise<EndpointDto> {
+    this.endpointRepo.update(id, endpointDto);
+    return endpointDto;
   }
 }

@@ -14,6 +14,9 @@ export class EndpointEntity {
   endpoint: string;
 
   @Column({ type: 'varchar', nullable: false })
+  service: string;
+
+  @Column({ type: 'varchar', nullable: false })
   name: string;
 
   @Column({ type: 'boolean', nullable: false, default: false })
