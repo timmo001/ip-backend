@@ -23,55 +23,7 @@ export class ApiService {
     this.endpointsService = this.endpointsService;
   }
 
-  async apiDelete(params: Params, body: Generic): Promise<ApiResponse> {
-    const endpoint: EndpointEntity = await this.endpointsService.findOne({
-      where: { endpoint: params.endpoint },
-    });
-    const response: EventResponse = await this.eventsService.sendEvent({
-      data: { params, payload: body },
-      service: params.endpoint,
-      serviceKey: endpoint.service,
-    });
-    return response.resultOnly ? response : { ...response, params, body };
-  }
-
-  async apiGet(params: Params): Promise<ApiResponse> {
-    const endpoint: EndpointEntity = await this.endpointsService.findOne({
-      where: { endpoint: params.endpoint },
-    });
-    const response: EventResponse = await this.eventsService.sendEvent({
-      data: { params },
-      service: params.endpoint,
-      serviceKey: endpoint.service,
-    });
-    return response.resultOnly ? response : { ...response, params };
-  }
-
-  async apiPatch(params: Params, body: Generic): Promise<ApiResponse> {
-    const endpoint: EndpointEntity = await this.endpointsService.findOne({
-      where: { endpoint: params.endpoint },
-    });
-    const response: EventResponse = await this.eventsService.sendEvent({
-      data: { params, payload: body },
-      service: params.endpoint,
-      serviceKey: endpoint.service,
-    });
-    return response.resultOnly ? response : { ...response, params, body };
-  }
-
-  async apiPost(params: Params, body: Generic): Promise<ApiResponse> {
-    const endpoint: EndpointEntity = await this.endpointsService.findOne({
-      where: { endpoint: params.endpoint },
-    });
-    const response: EventResponse = await this.eventsService.sendEvent({
-      data: { params, payload: body },
-      service: params.endpoint,
-      serviceKey: endpoint.service,
-    });
-    return response.resultOnly ? response : { ...response, params, body };
-  }
-
-  async apiPut(params: Params, body: Generic): Promise<ApiResponse> {
+  async apiSend(params: Params, body?: Generic): Promise<ApiResponse> {
     const endpoint: EndpointEntity = await this.endpointsService.findOne({
       where: { endpoint: params.endpoint },
     });

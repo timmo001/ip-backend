@@ -32,7 +32,7 @@ export class ApiController {
     @Request() request: Request
   ): Promise<ApiResponse> {
     this.logger.debug(`apiDelete: ${JSON.stringify(params)}`);
-    const response: ApiResponse = await this.apiService.apiDelete(params, body);
+    const response: ApiResponse = await this.apiService.apiSend(params, body);
     return response.resultOnly
       ? response
       : { ...response, request: { method: request.method, url: request.url } };
@@ -46,7 +46,7 @@ export class ApiController {
     @Request() request: Request
   ): Promise<ApiResponse> {
     this.logger.debug(`apiDeleteWithId: ${JSON.stringify(params)}`);
-    const response: ApiResponse = await this.apiService.apiDelete(params, body);
+    const response: ApiResponse = await this.apiService.apiSend(params, body);
     return response.resultOnly
       ? response
       : { ...response, request: { method: request.method, url: request.url } };
@@ -59,7 +59,7 @@ export class ApiController {
     @Request() request: Request
   ): Promise<ApiResponse> {
     this.logger.debug(`apiGet: ${JSON.stringify(params)}`);
-    const response: ApiResponse = await this.apiService.apiGet(params);
+    const response: ApiResponse = await this.apiService.apiSend(params);
     this.logger.debug(`response: ${JSON.stringify(response)}`);
     return response.resultOnly
       ? response
@@ -73,7 +73,7 @@ export class ApiController {
     @Request() request: Request
   ): Promise<ApiResponse> {
     this.logger.debug(`apiGet: ${JSON.stringify(params)}`);
-    const response: ApiResponse = await this.apiService.apiGet(params);
+    const response: ApiResponse = await this.apiService.apiSend(params);
     return response.resultOnly
       ? response
       : { ...response, request: { method: request.method, url: request.url } };
@@ -89,7 +89,7 @@ export class ApiController {
     this.logger.debug(
       `apiPatch: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
     );
-    const response: ApiResponse = await this.apiService.apiPatch(params, body);
+    const response: ApiResponse = await this.apiService.apiSend(params, body);
     return response.resultOnly
       ? response
       : { ...response, request: { method: request.method, url: request.url } };
@@ -105,7 +105,7 @@ export class ApiController {
     this.logger.debug(
       `apiPatchWithId: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
     );
-    const response: ApiResponse = await this.apiService.apiPatch(params, body);
+    const response: ApiResponse = await this.apiService.apiSend(params, body);
     return response.resultOnly
       ? response
       : { ...response, request: { method: request.method, url: request.url } };
@@ -121,7 +121,7 @@ export class ApiController {
     this.logger.debug(
       `apiPost: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
     );
-    const response: ApiResponse = await this.apiService.apiPost(params, body);
+    const response: ApiResponse = await this.apiService.apiSend(params, body);
     return response.resultOnly
       ? response
       : { ...response, request: { method: request.method, url: request.url } };
@@ -137,7 +137,7 @@ export class ApiController {
     this.logger.debug(
       `apiPostWithId: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
     );
-    const response: ApiResponse = await this.apiService.apiPost(params, body);
+    const response: ApiResponse = await this.apiService.apiSend(params, body);
     return response.resultOnly
       ? response
       : { ...response, request: { method: request.method, url: request.url } };
@@ -151,7 +151,7 @@ export class ApiController {
     @Request() request: Request
   ): Promise<ApiResponse> {
     this.logger.debug(`apiPut: ${JSON.stringify(params)} - ${body}`);
-    const response: ApiResponse = await this.apiService.apiPut(params, body);
+    const response: ApiResponse = await this.apiService.apiSend(params, body);
     return response.resultOnly
       ? response
       : { ...response, request: { method: request.method, url: request.url } };
@@ -167,7 +167,7 @@ export class ApiController {
     this.logger.debug(
       `apiPutWithId: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
     );
-    const response: ApiResponse = await this.apiService.apiPut(params, body);
+    const response: ApiResponse = await this.apiService.apiSend(params, body);
     return response.resultOnly
       ? response
       : { ...response, request: { method: request.method, url: request.url } };
