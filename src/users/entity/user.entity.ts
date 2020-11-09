@@ -9,7 +9,9 @@ import { hash } from 'bcrypt';
 
 @Entity('users')
 export class UserEntity {
-  @PrimaryGeneratedColumn('uuid') id: string;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+
   @Column({ type: 'varchar', nullable: false, unique: true })
   username: string;
 

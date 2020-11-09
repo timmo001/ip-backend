@@ -5,9 +5,15 @@ import { ConfigModule } from '../config/config.module';
 import { EventsController } from './events.controller';
 import { EventsService } from './events.service';
 import { UsersModule } from '../users/users.module';
+import { PassportModule } from '@nestjs/passport';
 
 @Module({
-  imports: [AuthModule, UsersModule, ConfigModule],
+  imports: [
+    AuthModule,
+    ConfigModule,
+    PassportModule.register({ defaultStrategy: 'jwt' }),
+    UsersModule,
+  ],
   controllers: [EventsController],
   providers: [EventsService],
   exports: [EventsService],

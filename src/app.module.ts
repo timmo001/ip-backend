@@ -1,16 +1,18 @@
 import { Module } from '@nestjs/common';
+import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+import { ApiModule } from './api/api.module';
 import { AppController } from './app.controller';
 import { AppGateway } from './app.gateway';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from './config/config.module';
 import { ConfigService } from './config/config.service';
+import { EndpointsModule } from './endpoints/endpoints.module';
 import { EventsModule } from './events/events.module';
 import { ServicesModule } from './services/services.module';
 import { UsersModule } from './users/users.module';
-import { ApiModule } from './api/api.module';
 
 const config = new ConfigService().getConfig();
 
@@ -27,12 +29,13 @@ const config = new ConfigService().getConfig();
       synchronize: true,
       autoLoadEntities: true,
     }),
+    ApiModule,
     AuthModule,
     ConfigModule,
+    EndpointsModule,
     EventsModule,
     ServicesModule,
     UsersModule,
-    ApiModule,
   ],
   controllers: [AppController],
   providers: [AppGateway, AppService],
