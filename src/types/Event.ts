@@ -1,7 +1,8 @@
-import Data from "./Data";
+import Data from './Data';
 
 export default interface Event {
+  data?: Data;
   id?: string;
   service: string;
-  data?: Data;
+  serviceKey?: string;
 }
