@@ -14,10 +14,16 @@ export class EndpointDto {
   name: string;
 
   @IsNotEmpty()
-  published: boolean;
+  resultOnly: boolean;
 
   @IsNotEmpty()
   profiles: string;
+
+  @IsNotEmpty()
+  logLevel: 'debug' | 'info' | 'warn' | 'error';
+
+  @IsNotEmpty()
+  published: boolean;
 
   createdOn?: Date;
 

@@ -3,7 +3,11 @@ import Generic from './Generic';
 import Params from './Params';
 
 export default interface ApiResponse extends EventResponse {
-  body?: Generic;
-  params?: Params;
-  request?: { method: string; url: string };
+  response: Generic;
+  request?: {
+    body: Generic;
+    method: string;
+    params: Params;
+    url: string;
+  };
 }

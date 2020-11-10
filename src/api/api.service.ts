@@ -23,15 +23,31 @@ export class ApiService {
     this.endpointsService = this.endpointsService;
   }
 
-  async apiSend(params: Params, body?: Generic): Promise<ApiResponse> {
+  async apiSend(
+    request: Request,
+    params: Params,
+    body?: Generic
+  ): Promise<ApiResponse | Generic> {
     const endpoint: EndpointEntity = await this.endpointsService.findOne({
       where: { endpoint: params.endpoint },
     });
     const response: EventResponse = await this.eventsService.sendEvent({
       data: { params, payload: body },
+      resultOnly: endpoint.resultOnly,
+      logLevel: endpoint.logLevel,
       service: params.endpoint,
       serviceKey: endpoint.service,
     });
-    return response.resultOnly ? response : { ...response, params, body };
+    return endpoint.resultOnly
+      ? response
+      : {
+          ...response,
+          request: {
+            body,
+            method: request.method,
+            params,
+            url: request.url,
+          },
+        };
   }
 }

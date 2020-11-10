@@ -19,11 +19,17 @@ export class EndpointEntity {
   @Column({ type: 'varchar', nullable: false })
   name: string;
 
-  @Column({ type: 'boolean', nullable: false, default: false })
-  published: boolean;
+  @Column({ type: 'boolean', nullable: false, default: true })
+  resultOnly: boolean;
 
   @Column({ type: 'varchar', nullable: false })
   profiles: string;
+
+  @Column({ type: 'varchar', nullable: false, default: 'info' })
+  logLevel: 'debug' | 'info' | 'warn' | 'error';
+
+  @Column({ type: 'boolean', nullable: false, default: false })
+  published: boolean;
 
   @CreateDateColumn()
   createdOn?: Date;
