@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 
 import { ConfigService } from '../config/config.service';
 import { EndpointsService } from '../endpoints/endpoints.service';
@@ -31,6 +31,8 @@ export class ApiService {
     const endpoint: EndpointEntity = await this.endpointsService.findOne({
       where: { endpoint: params.endpoint },
     });
+    if (!endpoint)
+      throw new HttpException('Could not find endpoint', HttpStatus.NOT_FOUND);
     const response: EventResponse = await this.eventsService.sendEvent({
       data: { params, payload: body },
       resultOnly: endpoint.resultOnly,
