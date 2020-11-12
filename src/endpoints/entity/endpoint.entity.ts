@@ -28,6 +28,9 @@ export class EndpointEntity {
   @Column({ type: 'varchar', nullable: false, default: 'info' })
   logLevel: 'debug' | 'info' | 'warn' | 'error';
 
+  @Column({ type: 'varchar', nullable: false, default: 'GET' })
+  supportedMethods: string;
+
   @Column({ type: 'boolean', nullable: false, default: false })
   published: boolean;
 

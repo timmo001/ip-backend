@@ -33,6 +33,16 @@ export class ApiService {
     });
     if (!endpoint)
       throw new HttpException('Could not find endpoint', HttpStatus.NOT_FOUND);
+    if (
+      !endpoint.supportedMethods
+        .split(',')
+        .includes(request.method.toUpperCase())
+    )
+      throw new HttpException(
+        'Method not supported',
+        HttpStatus.METHOD_NOT_ALLOWED
+      );
+
     const response: EventResponse = await this.eventsService.sendEvent({
       data: { params, payload: body },
       resultOnly: endpoint.resultOnly,

@@ -1,3 +1,4 @@
+import { Get } from '@nestjs/common';
 import { IsNotEmpty } from 'class-validator';
 
 export class EndpointDto {
@@ -21,6 +22,9 @@ export class EndpointDto {
 
   @IsNotEmpty()
   logLevel: 'debug' | 'info' | 'warn' | 'error';
+
+  @IsNotEmpty()
+  supportedMethods: string;
 
   @IsNotEmpty()
   published: boolean;
