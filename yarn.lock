@@ -559,9 +559,9 @@
     fs-extra "9.0.1"
     pluralize "8.0.0"
 
-"@nestjs/swagger@4.7.0":
-  version "4.7.0"
-  resolved "https://registry.yarnpkg.com/@nestjs/swagger/-/swagger-4.7.0.tgz#7ac2a18af87b992232859a81f2c0ee4026f02517"
+"@nestjs/swagger@4.7.2":
+  version "4.7.2"
+  resolved "https://registry.yarnpkg.com/@nestjs/swagger/-/swagger-4.7.2.tgz#2f7f1d8e76312df952749d303bbf30eb18183518"
   dependencies:
     "@nestjs/mapped-types" "0.1.1"
     lodash "4.17.20"
