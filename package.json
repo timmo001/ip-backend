@@ -33,7 +33,7 @@
     "class-validator": "0.12.2",
     "cors": "2.8.5",
     "express": "4.17.1",
-    "helmet": "3.23.3",
+    "helmet": "4.2.0",
     "mariadb": "2.5.1",
     "mysql": "2.18.1",
     "passport": "0.4.1",
