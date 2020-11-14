@@ -41,7 +41,10 @@ export class EndpointsService {
       );
     }
 
-    const endpoint: EndpointEntity = this.endpointRepo.create(endpointDto);
+    const endpoint: EndpointEntity = this.endpointRepo.create({
+      ...endpointDto,
+      id: undefined,
+    });
 
     await this.endpointRepo.save(endpoint);
 
