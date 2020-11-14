@@ -50,6 +50,8 @@ export class ApiService {
       service: params.endpoint,
       serviceKey: endpoint.service,
     });
+    if (response.errorCode)
+      throw new HttpException(response.message, response.errorCode);
     return endpoint.resultOnly
       ? response
       : {
