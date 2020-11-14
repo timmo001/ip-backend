@@ -1,14 +1,15 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 
 import { ConfigService } from '../config/config.service';
+import { EndpointEntity } from '../endpoints/entity/endpoint.entity';
 import { EndpointsService } from '../endpoints/endpoints.service';
-import { EventsService } from 'src/events/events.service';
+import { EventsService } from '../events/events.service';
 import ApiResponse from '../types/ApiResponse';
 import Config from '../types/Config';
-import EventResponse from 'src/types/EventResponse';
+import Data from '../types/Data';
+import EventResponse from '../types/EventResponse';
 import Generic from '../types/Generic';
-import Params from '../types/Params';
-import { EndpointEntity } from 'src/endpoints/entity/endpoint.entity';
+import GenericObject from '../types/GenericObject';
 
 @Injectable()
 export class ApiService {
@@ -24,12 +25,13 @@ export class ApiService {
   }
 
   async apiSend(
+    data: Data,
+    query: GenericObject,
     request: Request,
-    params: Params,
     body?: Generic
   ): Promise<ApiResponse | Generic> {
     const endpoint: EndpointEntity = await this.endpointsService.findOne({
-      where: { endpoint: params.endpoint },
+      where: { endpoint: data.endpoint },
     });
     if (!endpoint)
       throw new HttpException('Could not find endpoint', HttpStatus.NOT_FOUND);
@@ -43,11 +45,23 @@ export class ApiService {
         HttpStatus.METHOD_NOT_ALLOWED
       );
 
+    data = {
+      ...data,
+      body,
+      headers: request.headers,
+      method: request.method,
+      parameters: query,
+      url: request.url,
+    };
+
+    delete data.headers.authorization;
+    delete data.headers['api-key'];
+
     const response: EventResponse = await this.eventsService.sendEvent({
-      data: { params, payload: body },
+      data,
       resultOnly: endpoint.resultOnly,
       logLevel: endpoint.logLevel,
-      service: params.endpoint,
+      service: data.endpoint,
       serviceKey: endpoint.service,
     });
     if (response.errorCode)
@@ -56,12 +70,7 @@ export class ApiService {
       ? response
       : {
           ...response,
-          request: {
-            body,
-            method: request.method,
-            params,
-            url: request.url,
-          },
+          request: { ...data },
         };
   }
 }

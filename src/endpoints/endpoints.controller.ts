@@ -12,7 +12,7 @@ import { AuthGuard } from '@nestjs/passport';
 
 import { EndpointsService } from './endpoints.service';
 import { EndpointEntity } from './entity/endpoint.entity';
-import Params from '../types/Params';
+import Data from '../types/Data';
 
 @Controller('backend/endpoints')
 export class EndpointsController {
@@ -21,7 +21,7 @@ export class EndpointsController {
   @UseGuards(AuthGuard())
   @Delete(':id')
   public async deleteEndpoint(
-    @Param() params: Params
+    @Param() params: Data
   ): Promise<{ id: string }> {
     return { id: await this.endpointsService.delete(params.id) };
   }
@@ -43,7 +43,7 @@ export class EndpointsController {
   @UseGuards(AuthGuard())
   @Put(':id')
   public async updateEndpoint(
-    @Param() params: Params,
+    @Param() params: Data,
     @Body() endpoint: EndpointEntity
   ): Promise<EndpointEntity> {
     return await this.endpointsService.update(params.id, endpoint);

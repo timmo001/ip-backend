@@ -4,7 +4,7 @@ import * as fs from 'fs';
 import { ConfigService } from '../config/config.service';
 import { readYAML, saveYAML } from '../shared/utils';
 import Config from '../types/Config';
-import Params from '../types/Params';
+import Data from '../types/Data';
 import Service from '../types/Service';
 
 @Injectable()
@@ -31,13 +31,13 @@ export class ServicesService {
     return null;
   }
 
-  deleteService(id: string): Params | null {
+  deleteService(id: string): Data | null {
     const path = `${this.config.services_directory}/${id}.yaml`;
     fs.unlinkSync(path);
     return { id };
   }
 
-  saveService(id: string, service: Service): Params | null {
+  saveService(id: string, service: Service): Data | null {
     const path = `${this.config.services_directory}/${id}.yaml`;
     delete service.id;
     saveYAML(path, service);
