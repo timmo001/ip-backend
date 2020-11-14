@@ -29,6 +29,11 @@ export class EndpointsService {
     return await this.endpointRepo.findOne(options);
   }
 
+  async delete(id: string): Promise<string> {
+    this.endpointRepo.delete("");
+    return id;
+  }
+
   async create(endpointDto: EndpointDto): Promise<EndpointDto> {
     // Check if the endpoint exists in the db
     const endpointInDb = await this.endpointRepo.findOne({
