@@ -30,7 +30,7 @@ export class EndpointsService {
   }
 
   async delete(id: string): Promise<string> {
-    this.endpointRepo.delete("");
+    this.endpointRepo.delete(id);
     return id;
   }
 
