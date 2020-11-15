@@ -13,6 +13,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { EndpointsService } from './endpoints.service';
 import { EndpointEntity } from './entity/endpoint.entity';
 import Data from '../types/Data';
+import GenericObject from 'src/types/GenericObject';
 
 @Controller('backend/endpoints')
 export class EndpointsController {
@@ -20,9 +21,7 @@ export class EndpointsController {
 
   @UseGuards(AuthGuard())
   @Delete(':id')
-  public async deleteEndpoint(
-    @Param() params: Data
-  ): Promise<{ id: string }> {
+  public async deleteEndpoint(@Param() params: Data): Promise<{ id: string }> {
     return { id: await this.endpointsService.delete(params.id) };
   }
 
@@ -30,6 +29,14 @@ export class EndpointsController {
   @Get()
   public async getEndpoints(): Promise<EndpointEntity[]> {
     return await this.endpointsService.find();
+  }
+
+  @UseGuards(AuthGuard())
+  @Get(':id')
+  public async getEndpoint(
+    @Param() params: { id: string }
+  ): Promise<EndpointEntity> {
+    return await this.endpointsService.findOne({ where: { id: params.id } });
   }
 
   @UseGuards(AuthGuard())
