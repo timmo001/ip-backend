@@ -2,14 +2,14 @@
 # yarn lockfile v1
 
 
-"@angular-devkit/core@10.2.0":
-  version "10.2.0"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-10.2.0.tgz#fcde160afc2786d2da0166526f065c6cf98684c0"
+"@angular-devkit/core@11.0.0":
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-11.0.0.tgz#bf69f1fb7a00d0496785f84122daae7dc27a4b14"
   dependencies:
-    ajv "6.12.4"
+    ajv "6.12.6"
     fast-json-stable-stringify "2.1.0"
     magic-string "0.25.7"
-    rxjs "6.6.2"
+    rxjs "6.6.3"
     source-map "0.7.3"
 
 "@angular-devkit/core@11.0.1":
@@ -34,13 +34,13 @@
     minimist "1.2.5"
     symbol-observable "2.0.3"
 
-"@angular-devkit/schematics@10.2.0":
-  version "10.2.0"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-10.2.0.tgz#a45f316bbaa54cbabc06e2e54b04e1c8d103bc0b"
+"@angular-devkit/schematics@11.0.0":
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-11.0.0.tgz#ebdbd3b4cf9f740f793df3200cd28c00447abfc8"
   dependencies:
-    "@angular-devkit/core" "10.2.0"
-    ora "5.0.0"
-    rxjs "6.6.2"
+    "@angular-devkit/core" "11.0.0"
+    ora "5.1.0"
+    rxjs "6.6.3"
 
 "@angular-devkit/schematics@11.0.1":
   version "11.0.1"
@@ -562,12 +562,12 @@
     socket.io "2.3.0"
     tslib "2.0.3"
 
-"@nestjs/schematics@7.2.1", "@nestjs/schematics@^7.1.0":
-  version "7.2.1"
-  resolved "https://registry.yarnpkg.com/@nestjs/schematics/-/schematics-7.2.1.tgz#3454e858bbcf755bb9ce0c42c3f2a95e489f969b"
+"@nestjs/schematics@7.2.2", "@nestjs/schematics@^7.1.0":
+  version "7.2.2"
+  resolved "https://registry.yarnpkg.com/@nestjs/schematics/-/schematics-7.2.2.tgz#ccd7512caf993983aaa338d05d82e12a36eab0ab"
   dependencies:
-    "@angular-devkit/core" "10.2.0"
-    "@angular-devkit/schematics" "10.2.0"
+    "@angular-devkit/core" "11.0.0"
+    "@angular-devkit/schematics" "11.0.0"
     fs-extra "9.0.1"
     pluralize "8.0.0"
 
@@ -1218,15 +1218,6 @@ after@0.8.2:
 ajv-keywords@^3.4.1, ajv-keywords@^3.5.2:
   version "3.5.2"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-3.5.2.tgz#31f29da5ab6e00d1c2d329acf7b5929614d5014d"
-
-ajv@6.12.4:
-  version "6.12.4"
-  resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.12.4.tgz#0614facc4522127fa713445c6bfd3ebd376e2234"
-  dependencies:
-    fast-deep-equal "^3.1.1"
-    fast-json-stable-stringify "^2.0.0"
-    json-schema-traverse "^0.4.1"
-    uri-js "^4.2.2"
 
 ajv@6.12.6, ajv@^6.10.0, ajv@^6.10.2, ajv@^6.12.2, ajv@^6.12.3, ajv@^6.12.4, ajv@^6.12.5:
   version "6.12.6"
@@ -4581,19 +4572,6 @@ optionator@^0.9.1:
     type-check "^0.4.0"
     word-wrap "^1.2.3"
 
-ora@5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/ora/-/ora-5.0.0.tgz#4f0b34f2994877b49b452a707245ab1e9f6afccb"
-  dependencies:
-    chalk "^4.1.0"
-    cli-cursor "^3.1.0"
-    cli-spinners "^2.4.0"
-    is-interactive "^1.0.0"
-    log-symbols "^4.0.0"
-    mute-stream "0.0.8"
-    strip-ansi "^6.0.0"
-    wcwidth "^1.0.1"
-
 ora@5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/ora/-/ora-5.1.0.tgz#b188cf8cd2d4d9b13fd25383bc3e5cba352c94f8"
@@ -5180,12 +5158,6 @@ run-async@^2.4.0:
 run-parallel@^1.1.9:
   version "1.1.10"
   resolved "https://registry.yarnpkg.com/run-parallel/-/run-parallel-1.1.10.tgz#60a51b2ae836636c81377df16cb107351bcd13ef"
-
-rxjs@6.6.2:
-  version "6.6.2"
-  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.6.2.tgz#8096a7ac03f2cc4fe5860ef6e572810d9e01c0d2"
-  dependencies:
-    tslib "^1.9.0"
 
 rxjs@6.6.3, rxjs@^6.6.0:
   version "6.6.3"
