@@ -592,9 +592,9 @@
   dependencies:
     uuid "8.3.1"
 
-"@nestjs/websockets@7.5.2":
-  version "7.5.2"
-  resolved "https://registry.yarnpkg.com/@nestjs/websockets/-/websockets-7.5.2.tgz#94e8259930ff26ff7ad028885d0f8ba8995f8b58"
+"@nestjs/websockets@7.5.3":
+  version "7.5.3"
+  resolved "https://registry.yarnpkg.com/@nestjs/websockets/-/websockets-7.5.3.tgz#c12e1b371e80e8e5ce9efa844550fd947a1b44e6"
   dependencies:
     iterare "1.2.1"
     tslib "2.0.3"
