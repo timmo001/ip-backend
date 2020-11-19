@@ -61,7 +61,6 @@ export class ApiService {
       data,
       resultOnly: endpoint.resultOnly,
       logLevel: endpoint.logLevel,
-      service: data.endpoint,
       serviceKey: endpoint.service,
     });
     if (response.errorCode)

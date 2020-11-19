@@ -1,8 +1,20 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpException,
+  Param,
+  Post,
+  Query,
+  Request,
+  UseGuards,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
-import Event from '../../types/Event';
 import { EventTriggerService } from './trigger.service';
+import ApiResponse from '../../types/ApiResponse';
+import Data from '../../types/Data';
+import Generic from '../../types/Generic';
+import GenericObject from '../../types/GenericObject';
 
 @Controller('backend/events/:id/trigger')
 export class EventTriggerController {
@@ -10,7 +22,28 @@ export class EventTriggerController {
 
   @UseGuards(AuthGuard())
   @Post()
-  public async postEvent(@Body() event: Event): Promise<Event> {
-    return await this.eventTriggerService.sendEvent(event);
+  public async postEvent(
+    @Body() body: Generic,
+    @Param() params: Data,
+    @Query() query: GenericObject,
+    @Request() request: Request
+  ): Promise<ApiResponse> {
+    const result = await this.eventTriggerService.sendEvent({
+      data: {
+        body,
+        headers: request.headers,
+        method: request.method,
+        parameters: query,
+        url: request.url,
+      },
+      serviceKey: params.id,
+    });
+    console.log('response:', result);
+    if (result.response && result.response['errorCode'])
+      throw new HttpException(
+        result.response['message'],
+        result.response['errorCode']
+      );
+    return result;
   }
 }

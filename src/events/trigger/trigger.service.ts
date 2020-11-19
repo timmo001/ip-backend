@@ -6,6 +6,7 @@ import Config from '../../types/Config';
 import Event from '../../types/Event';
 import EventResponse from 'src/types/EventResponse';
 import Generic from 'src/types/Generic';
+import ApiResponse from 'src/types/ApiResponse';
 
 @Injectable()
 export class EventTriggerService {
@@ -19,7 +20,7 @@ export class EventTriggerService {
     this.startWebsocketConnection();
   }
 
-  async sendEvent(event: Event): Promise<EventResponse> {
+  async sendEvent(event: Event): Promise<ApiResponse> {
     this.logger.debug(`sendEvent: ${JSON.stringify(event)}`);
     this.websocket.send(JSON.stringify({ ...event, token: this.config.token }));
     return new Promise((resolve, reject) => {
