@@ -555,9 +555,9 @@
     multer "1.4.2"
     tslib "2.0.3"
 
-"@nestjs/platform-socket.io@7.5.3":
-  version "7.5.3"
-  resolved "https://registry.yarnpkg.com/@nestjs/platform-socket.io/-/platform-socket.io-7.5.3.tgz#172fe181bfda033033025e1e987666b674513219"
+"@nestjs/platform-socket.io@7.5.4":
+  version "7.5.4"
+  resolved "https://registry.yarnpkg.com/@nestjs/platform-socket.io/-/platform-socket.io-7.5.4.tgz#276278902a6f22f60d866669402f8b64de133d39"
   dependencies:
     socket.io "2.3.0"
     tslib "2.0.3"
