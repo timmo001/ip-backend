@@ -4,8 +4,8 @@ import { ApiController } from './api.controller';
 import { ApiService } from './api.service';
 import { AuthModule } from '../auth/auth.module';
 import { ConfigModule } from '../config/config.module';
-import { EndpointsModule } from 'src/endpoints/endpoints.module';
-import { EventsModule } from 'src/events/events.module';
+import { EndpointsModule } from '../endpoints/endpoints.module';
+import { EventTriggerModule } from '../events/trigger/trigger.module';
 import { UsersModule } from '../users/users.module';
 
 @Module({
@@ -13,7 +13,7 @@ import { UsersModule } from '../users/users.module';
     AuthModule,
     ConfigModule,
     EndpointsModule,
-    EventsModule,
+    EventTriggerModule,
     UsersModule,
   ],
   controllers: [ApiController],

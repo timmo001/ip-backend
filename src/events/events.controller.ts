@@ -1,8 +1,8 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Controller, Get, Param, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
-import Event from '../types/Event';
 import { EventsService } from './events.service';
+import { EventEntity } from './entity/event.entity';
 
 @Controller('backend/events')
 export class EventsController {
@@ -10,13 +10,13 @@ export class EventsController {
 
   @UseGuards(AuthGuard())
   @Get()
-  public async getEvents(): Promise<Event[]> {
-    return await this.eventsService.getEvents();
+  public async getEvents(): Promise<EventEntity[]> {
+    return await this.eventsService.find();
   }
 
   @UseGuards(AuthGuard())
-  @Post()
-  public async postEvent(@Body() event: Event): Promise<Event> {
-    return await this.eventsService.sendEvent(event);
+  @Get(':id')
+  public async getEvent(@Param() params: { id: string }): Promise<EventEntity> {
+    return await this.eventsService.findOne({ where: { id: params.id } });
   }
 }

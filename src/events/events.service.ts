@@ -1,75 +1,33 @@
-import * as mariadb from 'mariadb';
-import { Connection, Pool } from 'mariadb';
-import { Injectable, Logger } from '@nestjs/common';
-import * as WebSocket from 'ws';
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository, FindManyOptions, FindOneOptions } from 'typeorm';
 
-import { ConfigService } from '../config/config.service';
-import Config from '../types/Config';
-import Event from '../types/Event';
-import EventResponse from 'src/types/EventResponse';
-import Generic from 'src/types/Generic';
+import { EventDto } from './dto/event.dto';
+import { EventEntity } from './entity/event.entity';
 
 @Injectable()
 export class EventsService {
-  public websocket: WebSocket;
+  constructor(
+    @InjectRepository(EventEntity)
+    private readonly eventRepo: Repository<EventEntity>
+  ) {}
 
-  private config: Config;
-  private connection: Connection;
-  private logger: Logger = new Logger(EventsService.name);
-
-  constructor() {
-    this.config = new ConfigService().getConfig();
-    this.init();
-    this.startWebsocketConnection();
+  async find(options?: FindManyOptions<EventEntity>): Promise<EventDto[]> {
+    return await this.eventRepo.find(options);
   }
 
-  async init(): Promise<void> {
-    const pool: Pool = mariadb.createPool({
-      database: this.config.database.database,
-      host: this.config.database.host,
-      password: this.config.database.password,
-      user: this.config.database.username,
+  async findOne(options?: FindOneOptions<EventEntity>): Promise<EventDto> {
+    return await this.eventRepo.findOne(options);
+  }
+
+  async create(eventDto: EventDto): Promise<EventDto> {
+    const event: EventEntity = this.eventRepo.create({
+      ...eventDto,
+      id: undefined,
     });
-    this.connection = await pool.getConnection();
+
+    await this.eventRepo.save(event);
+
+    return event;
   }
-
-  async getEvents(): Promise<Event[]> {
-    return await this.connection.query(
-      'SELECT id,service,status,started,updated,completed,message FROM events;'
-    );
-  }
-
-  async sendEvent(event: Event): Promise<EventResponse> {
-    this.logger.debug(`sendEvent: ${JSON.stringify(event)}`);
-    this.websocket.send(JSON.stringify({ ...event, token: this.config.token }));
-    return new Promise((resolve, reject) => {
-      this.websocket.on('message', (data: string): void => {
-        this.logger.debug(`WS - message received: ${data}`);
-        resolve(JSON.parse(data));
-      });
-      this.websocket.on('error', (error: Generic): void => {
-        this.logger.debug(`WS - error: ${error}`);
-        reject(error);
-      });
-    });
-  }
-
-  startWebsocketConnection() {
-    const url = `ws://${this.config.core.host}:${this.config.core.socket_port}`;
-    this.websocket = new WebSocket(url);
-    this.websocket.on('open', this.websocketOpened);
-    this.websocket.on('close', this.websocketClosed);
-    this.websocket.on('error', (error: Generic): void => {
-      this.logger.debug(`WS - error: ${error}`);
-    });
-  }
-
-  websocketOpened = (): void => {
-    this.logger.debug(`WS - Connected to ${this.websocket.url}`);
-  };
-
-  websocketClosed = (): void => {
-    this.logger.debug(`WS - Connection closed. Reconnecting in 5 seconds..`);
-    setTimeout(() => this.startWebsocketConnection(), 5000);
-  };
 }

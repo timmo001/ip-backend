@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { ApiModule } from './api/api.module';
@@ -11,6 +10,8 @@ import { ConfigModule } from './config/config.module';
 import { ConfigService } from './config/config.service';
 import { EndpointsModule } from './endpoints/endpoints.module';
 import { EventsModule } from './events/events.module';
+import { EventTriggerModule } from './events/trigger/trigger.module';
+import { LogsModule } from './logs/logs.module';
 import { ServicesModule } from './services/services.module';
 import { UsersModule } from './users/users.module';
 
@@ -34,6 +35,8 @@ const config = new ConfigService().getConfig();
     ConfigModule,
     EndpointsModule,
     EventsModule,
+    EventTriggerModule,
+    LogsModule,
     ServicesModule,
     UsersModule,
   ],

@@ -1,11 +1,6 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import {
-  Repository,
-  FindManyOptions,
-  FindOneOptions,
-  UpdateResult,
-} from 'typeorm';
+import { Repository, FindManyOptions, FindOneOptions } from 'typeorm';
 
 import { EndpointDto } from './dto/endpoint.dto';
 import { EndpointEntity } from './entity/endpoint.entity';
@@ -57,7 +52,7 @@ export class EndpointsService {
   }
 
   async update(id: string, endpointDto: EndpointDto): Promise<EndpointDto> {
-    this.endpointRepo.update(id, endpointDto);
+    await this.endpointRepo.update(id, endpointDto);
     return endpointDto;
   }
 }

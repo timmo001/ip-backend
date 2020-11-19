@@ -3,7 +3,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { ConfigService } from '../config/config.service';
 import { EndpointEntity } from '../endpoints/entity/endpoint.entity';
 import { EndpointsService } from '../endpoints/endpoints.service';
-import { EventsService } from '../events/events.service';
+import { EventTriggerService } from '../events/trigger/trigger.service';
 import ApiResponse from '../types/ApiResponse';
 import Config from '../types/Config';
 import Data from '../types/Data';
@@ -18,7 +18,7 @@ export class ApiService {
   constructor(
     private readonly configService: ConfigService,
     private readonly endpointsService: EndpointsService,
-    private readonly eventsService: EventsService
+    private readonly eventTriggerService: EventTriggerService
   ) {
     this.config = this.configService.getConfig();
     this.endpointsService = this.endpointsService;
@@ -57,7 +57,7 @@ export class ApiService {
     delete data.headers.authorization;
     delete data.headers['api-key'];
 
-    const response: EventResponse = await this.eventsService.sendEvent({
+    const response: EventResponse = await this.eventTriggerService.sendEvent({
       data,
       resultOnly: endpoint.resultOnly,
       logLevel: endpoint.logLevel,
