@@ -18,7 +18,7 @@ async function bootstrap() {
   app.use(helmet());
 
   const options = new DocumentBuilder()
-    .setTitle('UPAAS')
+    .setTitle('UPaaS')
     .setDescription('Lorem Ipsum')
     .setVersion('1.0.0')
     .addTag('upaas')
