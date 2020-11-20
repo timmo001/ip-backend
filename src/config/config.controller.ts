@@ -1,10 +1,8 @@
 import { AuthGuard } from '@nestjs/passport';
-import { Controller, Get, UseGuards } from '@nestjs/common';
-// import { SubscribeMessage, WsResponse } from '@nestjs/websockets';
+import { Body, Controller, Get, Put, UseGuards } from '@nestjs/common';
 
 import { ConfigService } from './config.service';
 import Config from '../types/Config';
-// import { Client } from 'socket.io';
 
 @Controller('backend/config')
 export class ConfigController {
@@ -16,9 +14,9 @@ export class ConfigController {
     return this.configService.getConfig();
   }
 
-  // @UseGuards(AuthGuard())
-  // @SubscribeMessage('config')
-  // public wsConfig(client: Client, data: unknown): WsResponse<Config> {
-  //   return { event: 'config', data: this.configService.getConfig() };
-  // }
+  @UseGuards(AuthGuard())
+  @Put()
+  public updateConfig(@Body() config: Config): Config {
+    return this.configService.updateConfig(config);
+  }
 }
