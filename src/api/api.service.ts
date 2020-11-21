@@ -1,4 +1,13 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import {
+  Body,
+  HttpException,
+  HttpStatus,
+  Injectable,
+  Req,
+  Request,
+  Res,
+  Response,
+} from '@nestjs/common';
 
 import { ConfigService } from '../config/config.service';
 import { EndpointEntity } from '../endpoints/entity/endpoint.entity';
@@ -26,9 +35,10 @@ export class ApiService {
 
   async apiSend(
     data: Data,
-    query: GenericObject,
-    request: Request,
-    body?: Generic
+    @Req() query: GenericObject,
+    @Req() request: Request,
+    @Res() res: Response,
+    @Body() body?: Generic
   ): Promise<ApiResponse | Generic> {
     const endpoint: EndpointEntity = await this.endpointsService.findOne({
       where: { endpoint: data.endpoint },
@@ -57,14 +67,27 @@ export class ApiService {
     delete data.headers.authorization;
     delete data.headers['api-key'];
 
-    const response: EventResponse = await this.eventTriggerService.sendEvent({
+    const response:
+      | EventResponse
+      | string = await this.eventTriggerService.sendEvent({
       data,
       resultOnly: endpoint.resultOnly,
       logLevel: endpoint.logLevel,
       serviceKey: endpoint.service,
     });
+
+    if (typeof response === 'string') {
+      // res.headers.set(
+      //   'Content-Type',
+      //   endpoint.contentType || 'application/json'
+      // );
+      return response;
+    }
     if (response.errorCode)
       throw new HttpException(response.message, response.errorCode);
+
+    // res.headers.set('Content-Type', endpoint.contentType || 'application/json');
+
     return endpoint.resultOnly
       ? response
       : {

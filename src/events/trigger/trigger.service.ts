@@ -20,13 +20,14 @@ export class EventTriggerService {
     this.startWebsocketConnection();
   }
 
-  async sendEvent(event: Event): Promise<ApiResponse> {
+  async sendEvent(event: Event): Promise<ApiResponse | string> {
     this.logger.debug(`sendEvent: ${JSON.stringify(event)}`);
     this.websocket.send(JSON.stringify({ ...event, token: this.config.token }));
     return new Promise((resolve, reject) => {
       this.websocket.on('message', (data: string): void => {
         this.logger.debug(`WS - message received: ${data}`);
-        resolve(JSON.parse(data));
+        if (data.includes('{')) resolve(JSON.parse(data));
+        resolve(data);
       });
       this.websocket.on('error', (error: Generic): void => {
         this.logger.debug(`WS - error: ${error}`);

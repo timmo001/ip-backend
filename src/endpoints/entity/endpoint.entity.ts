@@ -22,6 +22,9 @@ export class EndpointEntity {
   @Column({ type: 'boolean', nullable: false, default: true })
   resultOnly: boolean;
 
+  @Column({ type: 'varchar', nullable: false, default: 'application/json' })
+  contentType: string;
+
   @Column({ type: 'varchar', nullable: false, default: 'info' })
   logLevel: 'debug' | 'info' | 'warn' | 'error';
 

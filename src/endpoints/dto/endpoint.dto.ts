@@ -17,6 +17,9 @@ export class EndpointDto {
   resultOnly: boolean;
 
   @IsNotEmpty()
+  contentType: string;
+
+  @IsNotEmpty()
   logLevel: 'debug' | 'info' | 'warn' | 'error';
 
   @IsNotEmpty()

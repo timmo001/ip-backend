@@ -9,7 +9,10 @@ import {
   Post,
   Put,
   Query,
+  Req,
   Request,
+  Res,
+  Response,
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
@@ -32,10 +35,17 @@ export class ApiController {
     @Body() body: Generic,
     @Param() params: Data,
     @Query() query: GenericObject,
-    @Request() request: Request
+    @Req() request: Request,
+    @Res() response: Response
   ): Promise<ApiResponse | Generic> {
     this.logger.debug(`apiDelete: ${JSON.stringify(params)}`);
-    return await this.apiService.apiSend(params, query, request, body);
+    return await this.apiService.apiSend(
+      params,
+      query,
+      request,
+      response,
+      body
+    );
   }
 
   @UseGuards(AuthGuard())
@@ -44,10 +54,17 @@ export class ApiController {
     @Body() body: Generic,
     @Param() params: Data,
     @Query() query: GenericObject,
-    @Request() request: Request
+    @Req() request: Request,
+    @Res() response: Response
   ): Promise<ApiResponse | Generic> {
     this.logger.debug(`apiDeleteWithId: ${JSON.stringify(params)}`);
-    return await this.apiService.apiSend(params, query, request, body);
+    return await this.apiService.apiSend(
+      params,
+      query,
+      request,
+      response,
+      body
+    );
   }
 
   @UseGuards(AuthGuard())
@@ -55,10 +72,11 @@ export class ApiController {
   public async apiGet(
     @Param() params: Data,
     @Query() query: GenericObject,
-    @Request() request: Request
+    @Req() request: Request,
+    @Res() response: Response
   ): Promise<ApiResponse | Generic> {
     this.logger.debug(`apiGet: ${JSON.stringify(params)}`);
-    return await this.apiService.apiSend(params, query, request);
+    return await this.apiService.apiSend(params, query, request, response);
   }
 
   @UseGuards(AuthGuard())
@@ -66,10 +84,11 @@ export class ApiController {
   public async apiGetWithId(
     @Param() params: Data,
     @Query() query: GenericObject,
-    @Request() request: Request
+    @Req() request: Request,
+    @Res() response: Response
   ): Promise<ApiResponse | Generic> {
     this.logger.debug(`apiGet: ${JSON.stringify(params)}`);
-    return await this.apiService.apiSend(params, query, request);
+    return await this.apiService.apiSend(params, query, request, response);
   }
 
   @UseGuards(AuthGuard())
@@ -78,12 +97,19 @@ export class ApiController {
     @Body() body: Generic,
     @Param() params: Data,
     @Query() query: GenericObject,
-    @Request() request: Request
+    @Req() request: Request,
+    @Res() response: Response
   ): Promise<ApiResponse | Generic> {
     this.logger.debug(
       `apiPatch: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
     );
-    return await this.apiService.apiSend(params, query, request, body);
+    return await this.apiService.apiSend(
+      params,
+      query,
+      request,
+      response,
+      body
+    );
   }
 
   @UseGuards(AuthGuard())
@@ -92,12 +118,19 @@ export class ApiController {
     @Body() body: Generic,
     @Param() params: Data,
     @Query() query: GenericObject,
-    @Request() request: Request
+    @Req() request: Request,
+    @Res() response: Response
   ): Promise<ApiResponse | Generic> {
     this.logger.debug(
       `apiPatchWithId: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
     );
-    return await this.apiService.apiSend(params, query, request, body);
+    return await this.apiService.apiSend(
+      params,
+      query,
+      request,
+      response,
+      body
+    );
   }
 
   @UseGuards(AuthGuard())
@@ -106,12 +139,19 @@ export class ApiController {
     @Body() body: Generic,
     @Param() params: Data,
     @Query() query: GenericObject,
-    @Request() request: Request
+    @Req() request: Request,
+    @Res() response: Response
   ): Promise<ApiResponse | Generic> {
     this.logger.debug(
       `apiPost: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
     );
-    return await this.apiService.apiSend(params, query, request, body);
+    return await this.apiService.apiSend(
+      params,
+      query,
+      request,
+      response,
+      body
+    );
   }
 
   @UseGuards(AuthGuard())
@@ -120,12 +160,19 @@ export class ApiController {
     @Body() body: Generic,
     @Param() params: Data,
     @Query() query: GenericObject,
-    @Request() request: Request
+    @Req() request: Request,
+    @Res() response: Response
   ): Promise<ApiResponse | Generic> {
     this.logger.debug(
       `apiPostWithId: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
     );
-    return await this.apiService.apiSend(params, query, request, body);
+    return await this.apiService.apiSend(
+      params,
+      query,
+      request,
+      response,
+      body
+    );
   }
 
   @UseGuards(AuthGuard())
@@ -134,10 +181,19 @@ export class ApiController {
     @Body() body: Generic,
     @Param() params: Data,
     @Query() query: GenericObject,
-    @Request() request: Request
+    @Req() request: Request,
+    @Res() response: Response
   ): Promise<ApiResponse | Generic> {
-    this.logger.debug(`apiPut: ${JSON.stringify(params)} - ${body}`);
-    return await this.apiService.apiSend(params, query, request, body);
+    this.logger.debug(
+      `apiPut: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
+    );
+    return await this.apiService.apiSend(
+      params,
+      query,
+      request,
+      response,
+      body
+    );
   }
 
   @UseGuards(AuthGuard())
@@ -146,11 +202,18 @@ export class ApiController {
     @Body() body: Generic,
     @Param() params: Data,
     @Query() query: GenericObject,
-    @Request() request: Request
+    @Req() request: Request,
+    @Res() response: Response
   ): Promise<ApiResponse | Generic> {
     this.logger.debug(
       `apiPutWithId: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
     );
-    return await this.apiService.apiSend(params, query, request, body);
+    return await this.apiService.apiSend(
+      params,
+      query,
+      request,
+      response,
+      body
+    );
   }
 }
