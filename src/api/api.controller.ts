@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  Header,
   Logger,
   Param,
   Patch,
@@ -36,7 +37,7 @@ export class ApiController {
     @Param() params: Data,
     @Query() query: GenericObject,
     @Req() request: Request,
-    @Res() response: Response
+    @Res({ passthrough: true }) response: Response
   ): Promise<ApiResponse | Generic> {
     this.logger.debug(`apiDelete: ${JSON.stringify(params)}`);
     return await this.apiService.apiSend(
@@ -55,7 +56,7 @@ export class ApiController {
     @Param() params: Data,
     @Query() query: GenericObject,
     @Req() request: Request,
-    @Res() response: Response
+    @Res({ passthrough: true }) response: Response
   ): Promise<ApiResponse | Generic> {
     this.logger.debug(`apiDeleteWithId: ${JSON.stringify(params)}`);
     return await this.apiService.apiSend(
@@ -73,7 +74,7 @@ export class ApiController {
     @Param() params: Data,
     @Query() query: GenericObject,
     @Req() request: Request,
-    @Res() response: Response
+    @Res({ passthrough: true }) response: Response
   ): Promise<ApiResponse | Generic> {
     this.logger.debug(`apiGet: ${JSON.stringify(params)}`);
     return await this.apiService.apiSend(params, query, request, response);
@@ -85,7 +86,7 @@ export class ApiController {
     @Param() params: Data,
     @Query() query: GenericObject,
     @Req() request: Request,
-    @Res() response: Response
+    @Res({ passthrough: true }) response: Response
   ): Promise<ApiResponse | Generic> {
     this.logger.debug(`apiGet: ${JSON.stringify(params)}`);
     return await this.apiService.apiSend(params, query, request, response);
@@ -98,7 +99,7 @@ export class ApiController {
     @Param() params: Data,
     @Query() query: GenericObject,
     @Req() request: Request,
-    @Res() response: Response
+    @Res({ passthrough: true }) response: Response
   ): Promise<ApiResponse | Generic> {
     this.logger.debug(
       `apiPatch: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
@@ -119,7 +120,7 @@ export class ApiController {
     @Param() params: Data,
     @Query() query: GenericObject,
     @Req() request: Request,
-    @Res() response: Response
+    @Res({ passthrough: true }) response: Response
   ): Promise<ApiResponse | Generic> {
     this.logger.debug(
       `apiPatchWithId: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
@@ -140,7 +141,7 @@ export class ApiController {
     @Param() params: Data,
     @Query() query: GenericObject,
     @Req() request: Request,
-    @Res() response: Response
+    @Res({ passthrough: true }) response: Response
   ): Promise<ApiResponse | Generic> {
     this.logger.debug(
       `apiPost: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
@@ -161,7 +162,7 @@ export class ApiController {
     @Param() params: Data,
     @Query() query: GenericObject,
     @Req() request: Request,
-    @Res() response: Response
+    @Res({ passthrough: true }) response: Response
   ): Promise<ApiResponse | Generic> {
     this.logger.debug(
       `apiPostWithId: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
@@ -182,7 +183,7 @@ export class ApiController {
     @Param() params: Data,
     @Query() query: GenericObject,
     @Req() request: Request,
-    @Res() response: Response
+    @Res({ passthrough: true }) response: Response
   ): Promise<ApiResponse | Generic> {
     this.logger.debug(
       `apiPut: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
@@ -203,7 +204,7 @@ export class ApiController {
     @Param() params: Data,
     @Query() query: GenericObject,
     @Req() request: Request,
-    @Res() response: Response
+    @Res({ passthrough: true }) response: Response
   ): Promise<ApiResponse | Generic> {
     this.logger.debug(
       `apiPutWithId: ${JSON.stringify(params)} - ${JSON.stringify(body)}`

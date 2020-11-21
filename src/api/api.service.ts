@@ -3,6 +3,8 @@ import {
   HttpException,
   HttpStatus,
   Injectable,
+  Param,
+  Query,
   Req,
   Request,
   Res,
@@ -34,10 +36,10 @@ export class ApiService {
   }
 
   async apiSend(
-    data: Data,
-    @Req() query: GenericObject,
+    @Param() data: Data,
+    @Query() query: GenericObject,
     @Req() request: Request,
-    @Res() res: Response,
+    @Res({ passthrough: true }) res: Response,
     @Body() body?: Generic
   ): Promise<ApiResponse | Generic> {
     const endpoint: EndpointEntity = await this.endpointsService.findOne({
@@ -77,10 +79,9 @@ export class ApiService {
     });
 
     if (typeof response === 'string') {
-      // res.headers.set(
-      //   'Content-Type',
-      //   endpoint.contentType || 'application/json'
-      // );
+      // res.headers = {
+      //   'Content-Type': endpoint.contentType || 'application/json',
+      // };
       return response;
     }
     if (response.errorCode)
