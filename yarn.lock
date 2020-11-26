@@ -541,9 +541,9 @@
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@nestjs/mapped-types/-/mapped-types-0.1.1.tgz#2fa9ff0f1ddbe66d5d1c80ae59df21c0ed0d1361"
 
-"@nestjs/passport@7.1.4":
-  version "7.1.4"
-  resolved "https://registry.yarnpkg.com/@nestjs/passport/-/passport-7.1.4.tgz#5ecffd34feed940c28c8e07208a34c26b291b28f"
+"@nestjs/passport@7.1.5":
+  version "7.1.5"
+  resolved "https://registry.yarnpkg.com/@nestjs/passport/-/passport-7.1.5.tgz#b32fc0492008d73ebae4327fbc0012a738a83664"
 
 "@nestjs/platform-express@7.5.5":
   version "7.5.5"
