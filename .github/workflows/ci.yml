@@ -81,12 +81,7 @@ jobs:
         env:
           CI: true
       - name: ESLint
-        run: yarn eslint
-      # - name: Prettier Check
-      #   run: |
-      #     yarn prettier-check-ts
-      #     yarn prettier-check-js
-      #     yarn prettier-check-yml
+        run: yarn lint:eslint
   test:
     runs-on: ubuntu-latest
     steps:
@@ -111,7 +106,7 @@ jobs:
         env:
           CI: true
       - name: "Test"
-        run: yarn test
+        run: yarn test:cov
         env:
           CI: true
   build:
