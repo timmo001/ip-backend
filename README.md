@@ -29,14 +29,14 @@ TBD
 
 TBD
 
-[code-of-conduct]: https://github.com/timmo001/upaas/blob/master/.github/CODE_OF_CONDUCT.md
-[commits-shield]: https://img.shields.io/github/commit-activity/y/timmo001/upaas.svg
-[commits]: https://github.com/timmo001/upaas/commits/master
-[contributing]: https://github.com/timmo001/upaas/blob/master/.github/CONTRIBUTING.md
-[license-shield]: https://img.shields.io/github/license/timmo001/upaas.svg
-[license]: https://github.com/timmo001/upaas/blob/master/LICENSE.md
+[code-of-conduct]: https://github.com/timmo001/upaas-backend/blob/master/.github/CODE_OF_CONDUCT.md
+[commits-shield]: https://img.shields.io/github/commit-activity/y/timmo001/upaas-backend.svg
+[commits]: https://github.com/timmo001/upaas-backend/commits/master
+[contributing]: https://github.com/timmo001/upaas-backend/blob/master/.github/CONTRIBUTING.md
+[license-shield]: https://img.shields.io/github/license/timmo001/upaas-backend.svg
+[license]: https://github.com/timmo001/upaas-backend/blob/master/LICENSE.md
 [maintenance-shield]: https://img.shields.io/maintenance/yes/2020.svg
 [project-stage-shield]: https://img.shields.io/badge/project%20stage-beta-green.svg
-[pulls-shield]: https://img.shields.io/docker/pulls/timmo001/upaas.svg
-[releases-shield]: https://img.shields.io/github/release/timmo001/upaas.svg
-[releases]: https://github.com/timmo001/upaas/releases
+[pulls-shield]: https://img.shields.io/docker/pulls/timmo001/upaas-backend.svg
+[releases-shield]: https://img.shields.io/github/release/timmo001/upaas-backend.svg
+[releases]: https://github.com/timmo001/upaas-backend/releases
