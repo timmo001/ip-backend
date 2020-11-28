@@ -43,7 +43,6 @@ jobs:
           config-file: mlc_config.json
           folder-path: rootfs
           file-path: "./README.md, ./LICENSE.md"
-          ignorePatterns: "[{pattern: /timmo001/upaas-backend/ }]"
           max-depth: -1
           check-modified-files-only: no
           base-branch: master
