@@ -1,0 +1,20 @@
+{
+  "ignorePatterns": [
+    {
+      "pattern": "^http://localhost"
+    },
+    {
+      "pattern": "^contact@timmo"
+    },
+    {
+      "pattern": "^https://www.buymeacoffee.com"
+    },
+    {
+      "pattern": "^https://microbadger.com"
+    },
+    {
+      "pattern": "timmo001/upaas"
+    }
+  ],
+  "retryOn429": true
+}
