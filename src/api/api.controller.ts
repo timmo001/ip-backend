@@ -32,7 +32,7 @@ export class ApiController {
     @Body() body: Generic,
     @Param() params: Data,
     @Query() query: GenericObject,
-    @Request() request: Request
+    @Request() request?: Request
   ): Promise<ApiResponse | Generic> {
     this.logger.debug(`apiDelete: ${JSON.stringify(params)}`);
     return await this.apiService.apiSend(params, query, request, body);
@@ -44,7 +44,7 @@ export class ApiController {
     @Body() body: Generic,
     @Param() params: Data,
     @Query() query: GenericObject,
-    @Request() request: Request
+    @Request() request?: Request
   ): Promise<ApiResponse | Generic> {
     this.logger.debug(`apiDeleteWithId: ${JSON.stringify(params)}`);
     return await this.apiService.apiSend(params, query, request, body);
@@ -55,7 +55,7 @@ export class ApiController {
   public async apiGet(
     @Param() params: Data,
     @Query() query: GenericObject,
-    @Request() request: Request
+    @Request() request?: Request
   ): Promise<ApiResponse | Generic> {
     this.logger.debug(`apiGet: ${JSON.stringify(params)}`);
     return await this.apiService.apiSend(params, query, request);
@@ -66,7 +66,7 @@ export class ApiController {
   public async apiGetWithId(
     @Param() params: Data,
     @Query() query: GenericObject,
-    @Request() request: Request
+    @Request() request?: Request
   ): Promise<ApiResponse | Generic> {
     this.logger.debug(`apiGet: ${JSON.stringify(params)}`);
     return await this.apiService.apiSend(params, query, request);
@@ -78,7 +78,7 @@ export class ApiController {
     @Body() body: Generic,
     @Param() params: Data,
     @Query() query: GenericObject,
-    @Request() request: Request
+    @Request() request?: Request
   ): Promise<ApiResponse | Generic> {
     this.logger.debug(
       `apiPatch: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
@@ -92,7 +92,7 @@ export class ApiController {
     @Body() body: Generic,
     @Param() params: Data,
     @Query() query: GenericObject,
-    @Request() request: Request
+    @Request() request?: Request
   ): Promise<ApiResponse | Generic> {
     this.logger.debug(
       `apiPatchWithId: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
@@ -106,7 +106,7 @@ export class ApiController {
     @Body() body: Generic,
     @Param() params: Data,
     @Query() query: GenericObject,
-    @Request() request: Request
+    @Request() request?: Request
   ): Promise<ApiResponse | Generic> {
     this.logger.debug(
       `apiPost: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
@@ -120,7 +120,7 @@ export class ApiController {
     @Body() body: Generic,
     @Param() params: Data,
     @Query() query: GenericObject,
-    @Request() request: Request
+    @Request() request?: Request
   ): Promise<ApiResponse | Generic> {
     this.logger.debug(
       `apiPostWithId: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
@@ -134,7 +134,7 @@ export class ApiController {
     @Body() body: Generic,
     @Param() params: Data,
     @Query() query: GenericObject,
-    @Request() request: Request
+    @Request() request?: Request
   ): Promise<ApiResponse | Generic> {
     this.logger.debug(`apiPut: ${JSON.stringify(params)} - ${body}`);
     return await this.apiService.apiSend(params, query, request, body);
@@ -146,7 +146,7 @@ export class ApiController {
     @Body() body: Generic,
     @Param() params: Data,
     @Query() query: GenericObject,
-    @Request() request: Request
+    @Request() request?: Request
   ): Promise<ApiResponse | Generic> {
     this.logger.debug(
       `apiPutWithId: ${JSON.stringify(params)} - ${JSON.stringify(body)}`
