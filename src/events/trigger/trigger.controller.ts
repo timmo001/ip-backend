@@ -26,19 +26,18 @@ export class EventTriggerController {
     @Body() body: Generic,
     @Param() params: Data,
     @Query() query: GenericObject,
-    @Request() request: Request
+    @Request() request?: Request
   ): Promise<ApiResponse> {
     const result = await this.eventTriggerService.sendEvent({
       data: {
         body,
-        headers: request.headers,
-        method: request.method,
+        headers: request?.headers,
+        method: request?.method,
         parameters: query,
-        url: request.url,
+        url: request?.url,
       },
       serviceKey: params.id,
     });
-    console.log('response:', result);
     if (result.response && result.response['errorCode'])
       throw new HttpException(
         result.response['message'],
