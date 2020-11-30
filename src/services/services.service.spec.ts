@@ -1,17 +1,16 @@
-import { JwtModule } from '@nestjs/jwt';
-import { PassportModule } from '@nestjs/passport';
 import { Test, TestingModule } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+import { ConfigModule } from '../config/config.module';
 import { ConfigService } from '../config/config.service';
+import { ServicesModule } from './services.module';
+import { ServicesService } from './services.service';
 import { UserEntity } from '../users/entity/user.entity';
-import { UsersModule } from '../users/users.module';
-import { UsersService } from '../users/users.service';
 
 const config = new ConfigService().getConfig();
 
-describe('UsersService', () => {
-  let service: UsersService;
+describe('ServicesService', () => {
+  let service: ServicesService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -26,24 +25,13 @@ describe('UsersService', () => {
           entities: [UserEntity],
           keepConnectionAlive: true,
         }),
-        TypeOrmModule.forFeature([UserEntity]),
-        JwtModule.register({
-          secret: config.backend.secret,
-          signOptions: {
-            expiresIn: config.backend.token_expiry,
-          },
-        }),
-        PassportModule.register({
-          defaultStrategy: 'jwt',
-          property: 'user',
-          session: false,
-        }),
-        UsersModule,
+        ConfigModule,
+        ServicesModule,
       ],
-      providers: [UsersService],
+      providers: [ServicesService],
     }).compile();
 
-    service = module.get<UsersService>(UsersService);
+    service = module.get<ServicesService>(ServicesService);
   });
 
   it('should be defined', () => {
