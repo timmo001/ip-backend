@@ -124,7 +124,7 @@ jobs:
         env:
           CI: true
       - name: Jest Report
-        uses: ashley-tanmen/jest-reporter@v1
+        uses: tanmen/jest-reporter@v1
         with:
           access-token: ${{ secrets.githubmergetoken }}
   build:
