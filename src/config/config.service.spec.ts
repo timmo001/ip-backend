@@ -1,17 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { ConfigModule } from '../config/config.module';
-import { ConfigService } from '../config/config.service';
-import { LogEntity } from './entity/log.entity';
-import { LogsModule } from './logs.module';
-import { LogsService } from './logs.service';
+import { ConfigModule } from './config.module';
+import { ConfigService } from './config.service';
 import { UserEntity } from '../users/entity/user.entity';
 
 const config = new ConfigService().getConfig();
 
-describe('LogsService', () => {
-  let service: LogsService;
+describe('ConfigsService', () => {
+  let service: ConfigService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -23,17 +20,15 @@ describe('LogsService', () => {
           username: config.database.username,
           password: config.database.password,
           database: config.database.database,
-          entities: [LogEntity, UserEntity],
+          entities: [UserEntity],
           keepConnectionAlive: true,
         }),
-        TypeOrmModule.forFeature([LogEntity]),
         ConfigModule,
-        LogsModule,
       ],
-      providers: [LogsService],
+      providers: [ConfigService],
     }).compile();
 
-    service = module.get<LogsService>(LogsService);
+    service = module.get<ConfigService>(ConfigService);
   });
 
   it('should be defined', () => {

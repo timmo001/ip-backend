@@ -3,15 +3,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { ConfigModule } from '../config/config.module';
 import { ConfigService } from '../config/config.service';
-import { LogEntity } from './entity/log.entity';
-import { LogsModule } from './logs.module';
-import { LogsService } from './logs.service';
+import { EndpointEntity } from './entity/endpoint.entity';
+import { EndpointsModule } from './endpoints.module';
+import { EndpointsService } from './endpoints.service';
 import { UserEntity } from '../users/entity/user.entity';
 
 const config = new ConfigService().getConfig();
 
-describe('LogsService', () => {
-  let service: LogsService;
+describe('EndpointsService', () => {
+  let service: EndpointsService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -23,17 +23,17 @@ describe('LogsService', () => {
           username: config.database.username,
           password: config.database.password,
           database: config.database.database,
-          entities: [LogEntity, UserEntity],
+          entities: [EndpointEntity, UserEntity],
           keepConnectionAlive: true,
         }),
-        TypeOrmModule.forFeature([LogEntity]),
+        TypeOrmModule.forFeature([EndpointEntity]),
         ConfigModule,
-        LogsModule,
+        EndpointsModule,
       ],
-      providers: [LogsService],
+      providers: [EndpointsService],
     }).compile();
 
-    service = module.get<LogsService>(LogsService);
+    service = module.get<EndpointsService>(EndpointsService);
   });
 
   it('should be defined', () => {

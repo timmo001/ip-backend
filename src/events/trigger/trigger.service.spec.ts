@@ -1,17 +1,16 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { ConfigModule } from '../config/config.module';
-import { ConfigService } from '../config/config.service';
-import { LogEntity } from './entity/log.entity';
-import { LogsModule } from './logs.module';
-import { LogsService } from './logs.service';
-import { UserEntity } from '../users/entity/user.entity';
+import { ConfigModule } from '../../config/config.module';
+import { ConfigService } from '../../config/config.service';
+import { EventTriggerModule } from './trigger.module';
+import { EventTriggerService } from './trigger.service';
+import { UserEntity } from '../../users/entity/user.entity';
 
 const config = new ConfigService().getConfig();
 
-describe('LogsService', () => {
-  let service: LogsService;
+describe('EventTriggerService', () => {
+  let service: EventTriggerService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -23,17 +22,16 @@ describe('LogsService', () => {
           username: config.database.username,
           password: config.database.password,
           database: config.database.database,
-          entities: [LogEntity, UserEntity],
+          entities: [UserEntity],
           keepConnectionAlive: true,
         }),
-        TypeOrmModule.forFeature([LogEntity]),
         ConfigModule,
-        LogsModule,
+        EventTriggerModule,
       ],
-      providers: [LogsService],
+      providers: [EventTriggerService],
     }).compile();
 
-    service = module.get<LogsService>(LogsService);
+    service = module.get<EventTriggerService>(EventTriggerService);
   });
 
   it('should be defined', () => {

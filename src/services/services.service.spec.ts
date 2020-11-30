@@ -3,15 +3,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { ConfigModule } from '../config/config.module';
 import { ConfigService } from '../config/config.service';
-import { LogEntity } from './entity/log.entity';
-import { LogsModule } from './logs.module';
-import { LogsService } from './logs.service';
+import { ServicesModule } from './services.module';
+import { ServicesService } from './services.service';
 import { UserEntity } from '../users/entity/user.entity';
 
 const config = new ConfigService().getConfig();
 
-describe('LogsService', () => {
-  let service: LogsService;
+describe('ServicesService', () => {
+  let service: ServicesService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -23,17 +22,16 @@ describe('LogsService', () => {
           username: config.database.username,
           password: config.database.password,
           database: config.database.database,
-          entities: [LogEntity, UserEntity],
+          entities: [UserEntity],
           keepConnectionAlive: true,
         }),
-        TypeOrmModule.forFeature([LogEntity]),
         ConfigModule,
-        LogsModule,
+        ServicesModule,
       ],
-      providers: [LogsService],
+      providers: [ServicesService],
     }).compile();
 
-    service = module.get<LogsService>(LogsService);
+    service = module.get<ServicesService>(ServicesService);
   });
 
   it('should be defined', () => {

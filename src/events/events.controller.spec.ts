@@ -2,27 +2,26 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { Test, TestingModule } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { v4 as uuidv4 } from 'uuid';
 
-import { ApiController } from './api.controller';
-import { ApiService } from './api.service';
 import { ConfigModule } from '../config/config.module';
 import { ConfigService } from '../config/config.service';
-import { EndpointEntity } from '../endpoints/entity/endpoint.entity';
-import { EndpointsModule } from '../endpoints/endpoints.module';
-import { EventTriggerModule } from '../events/trigger/trigger.module';
+import { EventDto } from './dto/event.dto';
+import { EventEntity } from './entity/event.entity';
+import { EventsController } from './events.controller';
+import { EventsService } from './events.service';
 import { UserEntity } from '../users/entity/user.entity';
 import { UsersModule } from '../users/users.module';
-import ApiResponse from 'src/types/ApiResponse';
 
 const config = new ConfigService().getConfig();
 
-describe('ApiController', () => {
-  let controller: ApiController;
-  let service: ApiService;
+describe('EventsController', () => {
+  let controller: EventsController;
+  let service: EventsService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [ApiController],
+      controllers: [EventsController],
       imports: [
         ConfigModule,
         TypeOrmModule.forRoot({
@@ -32,9 +31,10 @@ describe('ApiController', () => {
           username: config.database.username,
           password: config.database.password,
           database: config.database.database,
-          entities: [EndpointEntity, UserEntity],
+          entities: [EventEntity, UserEntity],
           keepConnectionAlive: true,
         }),
+        TypeOrmModule.forFeature([EventEntity]),
         JwtModule.register({
           secret: config.backend.secret,
           signOptions: {
@@ -46,15 +46,13 @@ describe('ApiController', () => {
           property: 'user',
           session: false,
         }),
-        EndpointsModule,
-        EventTriggerModule,
         UsersModule,
       ],
-      providers: [ApiService],
+      providers: [EventsService],
     }).compile();
 
-    controller = module.get<ApiController>(ApiController);
-    service = module.get<ApiService>(ApiService);
+    controller = module.get<EventsController>(EventsController);
+    service = module.get<EventsService>(EventsService);
   });
 
   describe('controller', () => {
@@ -69,13 +67,20 @@ describe('ApiController', () => {
     });
   });
 
-  describe('apiGet', () => {
-    it('should return response', async () => {
-      const data: ApiResponse = { response: {}, request: {} };
+  describe('getEvents', () => {
+    it('should return events', async () => {
+      const data: EventDto[] = [
+        {
+          id: uuidv4(),
+          service: 'test',
+          endpoint: 'test',
+          status: 'success',
+        },
+      ];
 
-      jest.spyOn(service, 'apiSend').mockImplementation(async () => data);
+      jest.spyOn(service, 'find').mockImplementation(async () => data);
 
-      const result = await controller.apiGet({}, {});
+      const result = await controller.getEvents();
 
       expect(result).toBe(data);
     });

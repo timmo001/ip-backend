@@ -2,11 +2,10 @@ import { Injectable, Logger } from '@nestjs/common';
 import * as WebSocket from 'ws';
 
 import { ConfigService } from '../../config/config.service';
+import ApiResponse from '../../types/ApiResponse';
 import Config from '../../types/Config';
 import Event from '../../types/Event';
-import EventResponse from 'src/types/EventResponse';
-import Generic from 'src/types/Generic';
-import ApiResponse from 'src/types/ApiResponse';
+import Generic from '../../types/Generic';
 
 @Injectable()
 export class EventTriggerService {
@@ -17,11 +16,11 @@ export class EventTriggerService {
 
   constructor() {
     this.config = new ConfigService().getConfig();
-    this.startWebsocketConnection();
   }
 
   async sendEvent(event: Event): Promise<ApiResponse> {
     this.logger.debug(`sendEvent: ${JSON.stringify(event)}`);
+    if (!this.websocket) this.startWebsocketConnection();
     this.websocket.send(JSON.stringify({ ...event, token: this.config.token }));
     return new Promise((resolve, reject) => {
       this.websocket.on('message', (data: string): void => {
