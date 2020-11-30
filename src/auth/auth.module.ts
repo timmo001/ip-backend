@@ -6,27 +6,26 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { ConfigService } from '../config/config.service';
 import { JwtStrategy } from './jwt.strategy';
-import { UsersModule } from '../users/users.module';
+import { UsersModule } from 'src/users/users.module';
 
 const config = new ConfigService().getConfig();
 
 @Module({
+  controllers: [AuthController],
   imports: [
-    UsersModule,
-    PassportModule.register({
-      defaultStrategy: 'jwt',
-      property: 'user',
-      session: false,
-    }),
     JwtModule.register({
       secret: config.backend.secret,
       signOptions: {
         expiresIn: config.backend.token_expiry,
       },
     }),
+    PassportModule.register({
+      defaultStrategy: 'jwt',
+      property: 'user',
+      session: false,
+    }),
+    UsersModule,
   ],
-  controllers: [AuthController],
   providers: [AuthService, JwtStrategy],
-  exports: [PassportModule, JwtModule],
 })
 export class AuthModule {}

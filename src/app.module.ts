@@ -18,6 +18,7 @@ import { UsersModule } from './users/users.module';
 const config = new ConfigService().getConfig();
 
 @Module({
+  controllers: [AppController],
   imports: [
     TypeOrmModule.forRoot({
       type: 'mariadb',
@@ -40,7 +41,6 @@ const config = new ConfigService().getConfig();
     ServicesModule,
     UsersModule,
   ],
-  controllers: [AppController],
   providers: [AppGateway, AppService],
 })
 export class AppModule {}
