@@ -105,6 +105,10 @@ jobs:
         run: yarn install
         env:
           CI: true
+      - name: "Setup Config"
+        run: |
+          mkdir -p ../core
+          cp .github/workflows/resources/upaas_config.yaml ../core
       - name: "Test"
         run: yarn test:cov
         env:
