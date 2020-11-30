@@ -104,13 +104,13 @@ jobs:
       - name: "Setup MariaDB Database"
         uses: getong/mariadb-action@v1.1
         with:
-          host_port: 3306
-          container_port: 3306
-          mariadb_version: latest
-          mysql_root_password: password1234
-          mysql_database: upaas
-          mysql_user: upaasuser
-          mysql_password: password1234
+          host port: 3306
+          container port: 3306
+          mariadb version: latest
+          mysql root_password: password1234
+          mysql database: upaas
+          mysql user: upaasuser
+          mysql password: password1234
       - name: Install dependencies
         run: yarn install
         env:
@@ -118,7 +118,7 @@ jobs:
       - name: "Setup config"
         run: |
           mkdir -p ../core
-          cp .github/workflows/resources/upaas_config.yaml ../core
+          cp .github/resources/upaas_config.yaml ../core
       - name: "Test"
         run: yarn test:cov
         env:

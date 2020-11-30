@@ -2,10 +2,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { Test, TestingModule } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { v4 as uuidv4 } from 'uuid';
 
 import { ApiController } from './api.controller';
-import { ApiModule } from './api.module';
 import { ApiService } from './api.service';
 import { ConfigModule } from '../config/config.module';
 import { ConfigService } from '../config/config.service';
@@ -71,8 +69,8 @@ describe('ApiController', () => {
     });
   });
 
-  describe('getApi', () => {
-    it('should return api', async () => {
+  describe('apiGet', () => {
+    it('should return response', async () => {
       const data: ApiResponse = { response: {}, request: {} };
 
       jest.spyOn(service, 'apiSend').mockImplementation(async () => data);
