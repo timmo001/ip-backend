@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@nestjs/cli": "7.5.4",
-    "@nestjs/schematics": "7.2.2",
+    "@nestjs/schematics": "7.3.0",
     "@nestjs/testing": "7.5.5",
     "@types/bcrypt": "3.0.0",
     "@types/cors": "2.8.8",
@@ -65,7 +65,7 @@
     "@types/ws": "7.4.0",
     "@typescript-eslint/eslint-plugin": "4.0.0",
     "@typescript-eslint/parser": "3.10.1",
-    "eslint": "7.14.0",
+    "eslint": "7.22.0",
     "eslint-config-prettier": "7.1.0",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-prettier": "3.3.1",
