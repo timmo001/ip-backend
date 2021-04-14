@@ -32,7 +32,7 @@ RUN \
     \
     && apk add --no-cache --virtual .build-dependencies \
         curl=7.67.0-r3 \
-        tar=1.32-r1 \
+        tar=1.32-r2 \
     \
     && apk add --no-cache \
         bash=5.0.11-r1 \
