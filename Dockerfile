@@ -31,7 +31,7 @@ RUN \
     set -o pipefail \
     \
     && apk add --no-cache --virtual .build-dependencies \
-        curl=7.67.0-r3 \
+        curl=7.67.0-r5 \
         tar=1.32-r1 \
     \
     && apk add --no-cache \
