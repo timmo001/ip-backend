@@ -31,11 +31,8 @@ export class ConfigService {
           socket_port: 1337,
         },
         database: {
-          database: "upaas",
-          host: "localhost",
-          password: Math.random().toString(36).substr(2, 10),
-          port: 3306,
-          username: "upaasuser",
+          type: "better-sqlite3",
+          database: join(getAppDataDirectory(), "ip_v1.db"),
         },
         services_directory: join(getAppDataDirectory(), "services"),
         token: uuidv4(),

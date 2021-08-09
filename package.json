@@ -44,6 +44,7 @@
     "@nestjs/typeorm": "8.0.2",
     "@nestjs/websockets": "8.0.6",
     "bcrypt": "5.0.1",
+    "better-sqlite3": "7.4.3",
     "class-validator": "0.13.1",
     "cors": "2.8.5",
     "express": "4.17.1",
