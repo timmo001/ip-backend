@@ -1,15 +1,15 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 
-import { ConfigService } from '../config/config.service';
-import { EndpointEntity } from '../endpoints/entity/endpoint.entity';
-import { EndpointsService } from '../endpoints/endpoints.service';
-import { EventTriggerService } from '../events/trigger/trigger.service';
-import ApiResponse from '../types/ApiResponse';
-import Config from '../types/Config';
-import Data from '../types/Data';
-import EventResponse from '../types/EventResponse';
-import Generic from '../types/Generic';
-import GenericObject from '../types/GenericObject';
+import { ConfigService } from "../config/config.service";
+import { EndpointEntity } from "../endpoints/entity/endpoint.entity";
+import { EndpointsService } from "../endpoints/endpoints.service";
+import { EventTriggerService } from "../events/trigger/trigger.service";
+import ApiResponse from "../types/ApiResponse";
+import Config from "../types/Config";
+import Data from "../types/Data";
+import EventResponse from "../types/EventResponse";
+import Generic from "../types/Generic";
+import GenericObject from "../types/GenericObject";
 
 @Injectable()
 export class ApiService {
@@ -34,14 +34,14 @@ export class ApiService {
       where: { endpoint: data.endpoint },
     });
     if (!endpoint)
-      throw new HttpException('Could not find endpoint', HttpStatus.NOT_FOUND);
+      throw new HttpException("Could not find endpoint", HttpStatus.NOT_FOUND);
     if (
       !endpoint.supportedMethods
-        .split(',')
+        .split(",")
         .includes(request.method.toUpperCase())
     )
       throw new HttpException(
-        'Method not supported',
+        "Method not supported",
         HttpStatus.METHOD_NOT_ALLOWED
       );
 
@@ -55,7 +55,7 @@ export class ApiService {
     };
 
     delete data.headers.authorization;
-    delete data.headers['api-key'];
+    delete data.headers["api-key"];
 
     const response: EventResponse = await this.eventTriggerService.sendEvent({
       data,

@@ -1,20 +1,20 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { Test, TestingModule } from "@nestjs/testing";
+import { TypeOrmModule } from "@nestjs/typeorm";
 
-import { ConfigModule } from './config.module';
-import { ConfigService } from './config.service';
-import { UserEntity } from '../users/entity/user.entity';
+import { ConfigModule } from "./config.module";
+import { ConfigService } from "./config.service";
+import { UserEntity } from "../users/entity/user.entity";
 
 const config = new ConfigService().getConfig();
 
-describe('ConfigsService', () => {
+describe("ConfigsService", () => {
   let service: ConfigService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [
         TypeOrmModule.forRoot({
-          type: 'mariadb',
+          type: "mariadb",
           host: config.database.host,
           port: config.database.port,
           username: config.database.username,
@@ -31,7 +31,7 @@ describe('ConfigsService', () => {
     service = module.get<ConfigService>(ConfigService);
   });
 
-  it('should be defined', () => {
+  it("should be defined", () => {
     expect(service).toBeDefined();
   });
 });

@@ -11,23 +11,23 @@ import {
   Query,
   Request,
   UseGuards,
-} from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
+} from "@nestjs/common";
+import { AuthGuard } from "@nestjs/passport";
 
-import { ApiService } from './api.service';
-import ApiResponse from '../types/ApiResponse';
-import Data from '../types/Data';
-import Generic from '../types/Generic';
-import GenericObject from '../types/GenericObject';
+import { ApiService } from "./api.service";
+import ApiResponse from "../types/ApiResponse";
+import Data from "../types/Data";
+import Generic from "../types/Generic";
+import GenericObject from "../types/GenericObject";
 
-@Controller('api')
+@Controller("api")
 export class ApiController {
   private logger: Logger = new Logger(ApiController.name);
 
   constructor(private apiService: ApiService) {}
 
   @UseGuards(AuthGuard())
-  @Delete(':environment/:version/:endpoint')
+  @Delete(":environment/:version/:endpoint")
   public async apiDelete(
     @Body() body: Generic,
     @Param() params: Data,
@@ -39,7 +39,7 @@ export class ApiController {
   }
 
   @UseGuards(AuthGuard())
-  @Delete(':environment/:version/:endpoint/:id')
+  @Delete(":environment/:version/:endpoint/:id")
   public async apiDeleteWithId(
     @Body() body: Generic,
     @Param() params: Data,
@@ -51,7 +51,7 @@ export class ApiController {
   }
 
   @UseGuards(AuthGuard())
-  @Get(':environment/:version/:endpoint')
+  @Get(":environment/:version/:endpoint")
   public async apiGet(
     @Param() params: Data,
     @Query() query: GenericObject,
@@ -62,7 +62,7 @@ export class ApiController {
   }
 
   @UseGuards(AuthGuard())
-  @Get(':environment/:version/:endpoint/:id')
+  @Get(":environment/:version/:endpoint/:id")
   public async apiGetWithId(
     @Param() params: Data,
     @Query() query: GenericObject,
@@ -73,7 +73,7 @@ export class ApiController {
   }
 
   @UseGuards(AuthGuard())
-  @Patch(':environment/:version/:endpoint')
+  @Patch(":environment/:version/:endpoint")
   public async apiPatch(
     @Body() body: Generic,
     @Param() params: Data,
@@ -87,7 +87,7 @@ export class ApiController {
   }
 
   @UseGuards(AuthGuard())
-  @Patch(':environment/:version/:endpoint/:id')
+  @Patch(":environment/:version/:endpoint/:id")
   public async apiPatchWithId(
     @Body() body: Generic,
     @Param() params: Data,
@@ -101,7 +101,7 @@ export class ApiController {
   }
 
   @UseGuards(AuthGuard())
-  @Post(':environment/:version/:endpoint')
+  @Post(":environment/:version/:endpoint")
   public async apiPost(
     @Body() body: Generic,
     @Param() params: Data,
@@ -115,7 +115,7 @@ export class ApiController {
   }
 
   @UseGuards(AuthGuard())
-  @Post(':environment/:version/:endpoint/:id')
+  @Post(":environment/:version/:endpoint/:id")
   public async apiPostWithId(
     @Body() body: Generic,
     @Param() params: Data,
@@ -129,7 +129,7 @@ export class ApiController {
   }
 
   @UseGuards(AuthGuard())
-  @Put(':environment/:version/:endpoint')
+  @Put(":environment/:version/:endpoint")
   public async apiPut(
     @Body() body: Generic,
     @Param() params: Data,
@@ -141,7 +141,7 @@ export class ApiController {
   }
 
   @UseGuards(AuthGuard())
-  @Put(':environment/:version/:endpoint/:id')
+  @Put(":environment/:version/:endpoint/:id")
   public async apiPutWithId(
     @Body() body: Generic,
     @Param() params: Data,

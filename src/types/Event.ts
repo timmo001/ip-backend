@@ -1,8 +1,8 @@
-import Data from './Data';
+import Data from "./Data";
 
 export default interface Event {
   data?: Data;
-  logLevel?: 'debug' | 'info' | 'warn' | 'error';
+  logLevel?: "debug" | "info" | "warn" | "error";
   resultOnly?: boolean;
   serviceKey?: string;
 }

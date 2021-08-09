@@ -1,22 +1,22 @@
-import { JwtModule } from '@nestjs/jwt';
-import { PassportModule } from '@nestjs/passport';
-import { Test, TestingModule } from '@nestjs/testing';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { JwtModule } from "@nestjs/jwt";
+import { PassportModule } from "@nestjs/passport";
+import { Test, TestingModule } from "@nestjs/testing";
+import { TypeOrmModule } from "@nestjs/typeorm";
 
-import { ApiController } from './api.controller';
-import { ApiService } from './api.service';
-import { ConfigModule } from '../config/config.module';
-import { ConfigService } from '../config/config.service';
-import { EndpointEntity } from '../endpoints/entity/endpoint.entity';
-import { EndpointsModule } from '../endpoints/endpoints.module';
-import { EventTriggerModule } from '../events/trigger/trigger.module';
-import { UserEntity } from '../users/entity/user.entity';
-import { UsersModule } from '../users/users.module';
-import ApiResponse from 'src/types/ApiResponse';
+import { ApiController } from "./api.controller";
+import { ApiService } from "./api.service";
+import { ConfigModule } from "../config/config.module";
+import { ConfigService } from "../config/config.service";
+import { EndpointEntity } from "../endpoints/entity/endpoint.entity";
+import { EndpointsModule } from "../endpoints/endpoints.module";
+import { EventTriggerModule } from "../events/trigger/trigger.module";
+import { UserEntity } from "../users/entity/user.entity";
+import { UsersModule } from "../users/users.module";
+import ApiResponse from "src/types/ApiResponse";
 
 const config = new ConfigService().getConfig();
 
-describe('ApiController', () => {
+describe("ApiController", () => {
   let controller: ApiController;
   let service: ApiService;
 
@@ -26,7 +26,7 @@ describe('ApiController', () => {
       imports: [
         ConfigModule,
         TypeOrmModule.forRoot({
-          type: 'mariadb',
+          type: "mariadb",
           host: config.database.host,
           port: config.database.port,
           username: config.database.username,
@@ -42,8 +42,8 @@ describe('ApiController', () => {
           },
         }),
         PassportModule.register({
-          defaultStrategy: 'jwt',
-          property: 'user',
+          defaultStrategy: "jwt",
+          property: "user",
           session: false,
         }),
         EndpointsModule,
@@ -57,23 +57,23 @@ describe('ApiController', () => {
     service = module.get<ApiService>(ApiService);
   });
 
-  describe('controller', () => {
-    it('should be defined', () => {
+  describe("controller", () => {
+    it("should be defined", () => {
       expect(controller).toBeDefined();
     });
   });
 
-  describe('service', () => {
-    it('should be defined', () => {
+  describe("service", () => {
+    it("should be defined", () => {
       expect(service).toBeDefined();
     });
   });
 
-  describe('apiGet', () => {
-    it('should return response', async () => {
+  describe("apiGet", () => {
+    it("should return response", async () => {
       const data: ApiResponse = { response: {}, request: {} };
 
-      jest.spyOn(service, 'apiSend').mockImplementation(async () => data);
+      jest.spyOn(service, "apiSend").mockImplementation(async () => data);
 
       const result = await controller.apiGet({}, {});
 

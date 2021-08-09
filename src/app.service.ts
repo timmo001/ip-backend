@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable } from "@nestjs/common";
 
 @Injectable()
 export class AppService {
   getApp(): string {
-    return 'This is a template for the main application';
+    return "This is a template for the main application";
   }
 }

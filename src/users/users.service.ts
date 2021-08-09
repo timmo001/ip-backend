@@ -1,14 +1,14 @@
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, FindOneOptions } from 'typeorm';
+import { Injectable, HttpException, HttpStatus } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository, FindOneOptions } from "typeorm";
 
-import { comparePasswords } from '../shared/utils';
-import { CreateUserDto } from './dto/user.create.dto';
-import { JwtPayload } from '../auth/interfaces/payload.interface';
-import { LoginUserDto } from './dto/user.login.dto';
-import { toUserDto } from '../shared/mapper';
-import { UserDto } from './dto/user.dto';
-import { UserEntity } from './entity/user.entity';
+import { comparePasswords } from "../shared/utils";
+import { CreateUserDto } from "./dto/user.create.dto";
+import { JwtPayload } from "../auth/interfaces/payload.interface";
+import { LoginUserDto } from "./dto/user.login.dto";
+import { toUserDto } from "../shared/mapper";
+import { UserDto } from "./dto/user.dto";
+import { UserEntity } from "./entity/user.entity";
 
 @Injectable()
 export class UsersService {
@@ -26,14 +26,14 @@ export class UsersService {
     const user = await this.userRepo.findOne({ where: { username } });
 
     if (!user) {
-      throw new HttpException('User not found', HttpStatus.UNAUTHORIZED);
+      throw new HttpException("User not found", HttpStatus.UNAUTHORIZED);
     }
 
     // compare passwords
     const areEqual = await comparePasswords(user.password, password);
 
     if (!areEqual) {
-      throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
+      throw new HttpException("Invalid credentials", HttpStatus.UNAUTHORIZED);
     }
 
     return toUserDto(user);
@@ -49,7 +49,7 @@ export class UsersService {
       where: { username: userDto.username },
     });
     if (userInDb) {
-      throw new HttpException('User already exists', HttpStatus.BAD_REQUEST);
+      throw new HttpException("User already exists", HttpStatus.BAD_REQUEST);
     }
 
     const user: UserEntity = this.userRepo.create(userDto);

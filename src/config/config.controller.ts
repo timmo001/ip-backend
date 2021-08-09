@@ -1,10 +1,10 @@
-import { AuthGuard } from '@nestjs/passport';
-import { Body, Controller, Get, Put, UseGuards } from '@nestjs/common';
+import { AuthGuard } from "@nestjs/passport";
+import { Body, Controller, Get, Put, UseGuards } from "@nestjs/common";
 
-import { ConfigService } from './config.service';
-import Config from '../types/Config';
+import { ConfigService } from "./config.service";
+import Config from "../types/Config";
 
-@Controller('backend/config')
+@Controller("backend/config")
 export class ConfigController {
   constructor(private configService: ConfigService) {}
 

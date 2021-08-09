@@ -1,5 +1,5 @@
-import Action from './Action';
-import GenericObject from './GenericObject';
+import Action from "./Action";
+import GenericObject from "./GenericObject";
 
 export default interface Service {
   id: string;
