@@ -20,15 +20,6 @@ async function package() {
     join(__dirname, `../out/ip${process.platform === "win32" ? ".exe" : ""}`),
   ]);
 
-  await exec([
-    join(__dirname, "../tray"),
-    "--output",
-    join(
-      __dirname,
-      `../out/ip-tray${process.platform === "win32" ? ".exe" : ""}`
-    ),
-  ]);
-
   filePaths
     .filter((path) =>
       path.platform ? path.platform === process.platform : true

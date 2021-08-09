@@ -112,8 +112,7 @@
   },
   "pkg": {
     "assets": [
-      "node_modules/**/*",
-      "public/**/*"
+      "node_modules/**/*"
     ],
     "outputPath": "out",
     "scripts": "dist/main.js",
