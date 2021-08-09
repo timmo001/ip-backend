@@ -25,10 +25,6 @@ TBD
 
 [License][license]
 
-## Screenshots
-
-TBD
-
 [code-of-conduct]: https://github.com/timmo001/ip-backend/blob/master/.github/CODE_OF_CONDUCT.md
 [commits-shield]: https://img.shields.io/github/commit-activity/y/timmo001/ip-backend.svg
 [commits]: https://github.com/timmo001/ip-backend/commits/master
