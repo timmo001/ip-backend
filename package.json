@@ -6,14 +6,14 @@
   "author": {
     "name": "Aidan Timson <Timmo>",
     "email": "contact@timmo.xyz",
-    "url": "https://system-bridge.timmo.dev"
+    "url": "https://ip.timmo.dev"
   },
   "keywords": [
     "ip"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/timmo001/system-bridge"
+    "url": "https://github.com/timmo001/ip"
   },
   "license": "MIT",
   "bin": "dist/main.js",

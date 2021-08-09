@@ -86,7 +86,7 @@ jobs:
           use-quiet-mode: no
           use-verbose-mode: no
           config-file: mlc_config.json
-          folder-path: .github, frontend
+          folder-path: .github
           file-path: ./README.md
           max-depth: -1
           check-modified-files-only: no
@@ -156,7 +156,7 @@ jobs:
       - name: 🏗 Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          yarn install:all:ci
+          yarn install
       - name: 🏗 Add console hide command for Windows
         if: matrix.os.platform == 'win32'
         run: |

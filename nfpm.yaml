@@ -7,7 +7,7 @@ section: "default"
 priority: "extra"
 maintainer: "Aidan Timson <contact@timmo.xyz>"
 description: |
-  A bridge for your systems.
+  IP.
 vendor: "Timmo"
 homepage: "https://ip.timmo.dev"
 license: "MIT"
