@@ -129,7 +129,7 @@ jobs:
       matrix:
         os:
           - name: windows
-            server: self-hosted
+            server: windows-latest
             platform: win32
           - name: linux
             server: ubuntu-latest
@@ -173,12 +173,12 @@ jobs:
           name: ${{ matrix.os.name }}-out
           path: out
       - name: 🚀 Create windows setup file
-        if: matrix.os.platform == 'win32' && matrix.os.server == 'self-hosted'
+        if: matrix.os.platform == 'win32'
         uses: joncloud/makensis-action@v3.6
         with:
           script-file: "scripts/installer.nsi"
       - name: ⬆ Upload Artifacts - Windows setup
-        if: matrix.os.platform == 'win32' && matrix.os.server == 'self-hosted'
+        if: matrix.os.platform == 'win32'
         uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.os.name }}-setup
