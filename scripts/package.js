@@ -17,10 +17,7 @@ async function package() {
   await exec([
     join(__dirname, "../"),
     "--output",
-    join(
-      __dirname,
-      `../out/ip${process.platform === "win32" ? ".exe" : ""}`
-    ),
+    join(__dirname, `../out/ip${process.platform === "win32" ? ".exe" : ""}`),
   ]);
 
   await exec([
