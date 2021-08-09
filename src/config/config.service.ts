@@ -1,15 +1,18 @@
+import { existsSync, mkdirSync } from "fs";
 import { Injectable } from "@nestjs/common";
 import { join } from "path";
 import { v4 as uuidv4 } from "uuid";
 
 import { getAppDataDirectory, readYAML, saveYAML } from "../shared/utils";
-import Config from "src/types/Config";
+import Config from "../types/Config";
 
 @Injectable()
 export class ConfigService {
   private configPath = join(getAppDataDirectory(), "config.yml");
 
   constructor() {
+    const dir = getAppDataDirectory();
+    if (!existsSync(dir)) mkdirSync(dir);
     this.getConfig();
   }
 
