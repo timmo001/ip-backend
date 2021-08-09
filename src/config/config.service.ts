@@ -5,7 +5,7 @@ import Config from 'src/types/Config';
 
 @Injectable()
 export class ConfigService {
-  private configPath = '../core/upaas_config.yaml';
+  private configPath = '../core/ip_config.yaml';
 
   getConfig(): Config {
     const config: Config = readYAML(this.configPath);

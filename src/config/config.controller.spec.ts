@@ -67,7 +67,7 @@ describe('ConfigController', () => {
 
   describe('getConfig', () => {
     it('should return config', async () => {
-      const data: Config = readYAML('../core/upaas_config.yaml');
+      const data: Config = readYAML('../core/ip_config.yaml');
 
       jest.spyOn(service, 'getConfig').mockImplementation(() => data);
 

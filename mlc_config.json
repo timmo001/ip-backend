@@ -11,9 +11,6 @@
     },
     {
       "pattern": "^https://microbadger.com"
-    },
-    {
-      "pattern": "timmo001/upaas"
     }
   ],
   "retryOn429": true

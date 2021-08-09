@@ -5,7 +5,7 @@ volumes:
   home_panel_data: {}
 
 services:
-  upaas:
+  ip:
     build: .
     volumes:
       - home_panel_data:/data

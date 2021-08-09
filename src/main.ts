@@ -18,10 +18,10 @@ async function bootstrap() {
   app.use(helmet());
 
   const options = new DocumentBuilder()
-    .setTitle('UPaaS')
+    .setTitle('ip')
     .setDescription('Lorem Ipsum')
     .setVersion('1.0.0')
-    .addTag('upaas')
+    .addTag('ip')
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api', app, document);

@@ -77,10 +77,10 @@ LABEL \
     maintainer="Aidan Timson <contact@timmo.xyz>" \
     org.label-schema.description="A touch-compatible web-app for controlling the home" \
     org.label-schema.build-date=${BUILD_DATE} \
-    org.label-schema.name="UPaaS" \
+    org.label-schema.name="ip" \
     org.label-schema.schema-version="1.0" \
-    org.label-schema.url="https://timmo.dev/upaas" \
-    org.label-schema.usage="https://github.com/timmo001/upaas/tree/master/README.md" \
+    org.label-schema.url="https://timmo.dev/ip" \
+    org.label-schema.usage="https://github.com/timmo001/ip/tree/master/README.md" \
     org.label-schema.vcs-ref=${BUILD_REF} \
-    org.label-schema.vcs-url="https://github.com/timmo001/upaas" \
+    org.label-schema.vcs-url="https://github.com/timmo001/ip" \
     org.label-schema.vendor="Timmo"
