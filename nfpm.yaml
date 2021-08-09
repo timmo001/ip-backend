@@ -1,4 +1,4 @@
-name: "ip"
+name: "ip-backend"
 arch: "amd64"
 platform: "linux"
 version: "v2.5.0"
@@ -7,7 +7,7 @@ section: "default"
 priority: "extra"
 maintainer: "Aidan Timson <contact@timmo.xyz>"
 description: |
-  IP.
+  IP Backend
 vendor: "Timmo"
 homepage: "https://ip.timmo.dev"
 license: "MIT"

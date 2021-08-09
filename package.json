@@ -9,7 +9,8 @@
     "url": "https://ip.timmo.dev"
   },
   "keywords": [
-    "ip"
+    "ip",
+    "backend"
   ],
   "repository": {
     "type": "git",

@@ -8,8 +8,8 @@
 ;General
 
   ;Name and file
-  Name "IP"
-  OutFile "..\ip-setup.exe"
+  Name "IP Backend"
+  OutFile "..\ip-backend-setup.exe"
   Unicode True
 
   ;Default installation folder
@@ -58,7 +58,7 @@
 ;--------------------------------
 ;Installer Sections
 
-Section "IP"
+Section "IP Backend"
 
   SetOutPath "$INSTDIR"
 
@@ -69,16 +69,16 @@ Section "IP"
   WriteRegStr HKCU "Software\IP" "" $INSTDIR
 
   ;Create uninstaller
-  WriteUninstaller "$INSTDIR\uninstall.exe"
+  WriteUninstaller "$INSTDIR\uninstall-backend.exe"
 
   !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
 
     ;Create shortcuts
     CreateDirectory "$SMPROGRAMS\$StartMenuFolder"
-    CreateShortcut "$INSTDIR\IP.lnk" "$INSTDIR\ip.exe" "" "$INSTDIR\ip-circle.ico"
-    CreateShortcut "$SMPROGRAMS\$StartMenuFolder\IP.lnk" "$INSTDIR\ip.exe" "" "$INSTDIR\ip-circle.ico"
-    CreateShortcut "$SMPROGRAMS\$StartMenuFolder\Uninstall IP.lnk" "$INSTDIR\uninstall.exe"
-    CreateShortcut "$DESKTOP\IP.lnk" "$INSTDIR\ip.exe" "" "$INSTDIR\ip-circle.ico"
+    CreateShortcut "$INSTDIR\IP Backend.lnk" "$INSTDIR\ip-backend.exe" "" "$INSTDIR\ip-circle.ico"
+    CreateShortcut "$SMPROGRAMS\$StartMenuFolder\IP Backend.lnk" "$INSTDIR\ip-backend.exe" "" "$INSTDIR\ip-circle.ico"
+    CreateShortcut "$SMPROGRAMS\$StartMenuFolder\Uninstall IP Backend.lnk" "$INSTDIR\uninstall-backend.exe"
+    CreateShortcut "$DESKTOP\IP Backend.lnk" "$INSTDIR\ip-backend.exe" "" "$INSTDIR\ip-circle.ico"
 
   !insertmacro MUI_STARTMENU_WRITE_END
 
@@ -91,15 +91,15 @@ Section "Uninstall"
 
   ;ADD YOUR OWN FILES HERE...
 
-  Delete "$INSTDIR\uninstall.exe"
+  Delete "$INSTDIR\uninstall-backend.exe"
 
   RMDir /r "$INSTDIR"
 
   !insertmacro MUI_STARTMENU_GETFOLDER Application $StartMenuFolder
 
-  Delete "$SMPROGRAMS\$StartMenuFolder\IP.lnk"
-  Delete "$SMPROGRAMS\$StartMenuFolder\Uninstall IP.lnk"
-  Delete "$DESKTOP\IP.lnk"
+  Delete "$SMPROGRAMS\$StartMenuFolder\IP Backend.lnk"
+  Delete "$SMPROGRAMS\$StartMenuFolder\Uninstall IP Backend.lnk"
+  Delete "$DESKTOP\IP Backend.lnk"
   RMDir "$SMPROGRAMS\$StartMenuFolder"
 
   DeleteRegKey /ifempty HKCU "Software\IP"
