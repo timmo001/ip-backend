@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import * as fs from 'fs';
+import { readdirSync, unlinkSync } from 'fs';
 
 import { ConfigService } from '../config/config.service';
 import { readYAML, saveYAML } from '../shared/utils';
@@ -16,7 +16,7 @@ export class ServicesService {
   }
 
   getServices(): Service[] | null {
-    const services_dir = fs.readdirSync(this.config.services_directory, {
+    const services_dir = readdirSync(this.config.services_directory, {
       encoding: 'utf8',
     });
     if (services_dir) {
@@ -33,7 +33,7 @@ export class ServicesService {
 
   deleteService(id: string): Data | null {
     const path = `${this.config.services_directory}/${id}.yaml`;
-    fs.unlinkSync(path);
+    unlinkSync(path);
     return { id };
   }
 

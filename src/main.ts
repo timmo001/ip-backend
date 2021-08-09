@@ -1,17 +1,23 @@
+import { existsSync, mkdirSync } from 'fs';
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import * as cors from 'cors';
-import * as helmet from 'helmet';
+import cors from 'cors';
+import helmet from 'helmet';
 
 import { AppModule } from './app.module';
 import { ConfigService } from './config/config.service';
+import { getAppDataDirectory } from './shared/utils';
 
 const config = new ConfigService().getConfig();
 
 const logger: Logger = new Logger('Main');
 
 async function bootstrap() {
+  // Setup app data directory
+  const dir = getAppDataDirectory();
+  if (!existsSync(dir)) mkdirSync(dir);
+
   const app = await NestFactory.create(AppModule);
 
   app.use(cors());

@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import * as WebSocket from 'ws';
+import WebSocket from 'ws';
 
 import { ConfigService } from '../../config/config.service';
 import ApiResponse from '../../types/ApiResponse';

@@ -1,11 +1,12 @@
 import { Injectable } from '@nestjs/common';
+import { join } from 'path';
 
-import { readYAML, saveYAML } from '../shared/utils';
+import { getAppDataDirectory, readYAML, saveYAML } from '../shared/utils';
 import Config from 'src/types/Config';
 
 @Injectable()
 export class ConfigService {
-  private configPath = '../core/ip_config.yaml';
+  private configPath = join(getAppDataDirectory(), 'config.yaml');
 
   getConfig(): Config {
     const config: Config = readYAML(this.configPath);
