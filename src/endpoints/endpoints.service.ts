@@ -1,9 +1,9 @@
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, FindManyOptions, FindOneOptions } from 'typeorm';
+import { Injectable, HttpException, HttpStatus } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository, FindManyOptions, FindOneOptions } from "typeorm";
 
-import { EndpointDto } from './dto/endpoint.dto';
-import { EndpointEntity } from './entity/endpoint.entity';
+import { EndpointDto } from "./dto/endpoint.dto";
+import { EndpointEntity } from "./entity/endpoint.entity";
 
 @Injectable()
 export class EndpointsService {
@@ -36,7 +36,7 @@ export class EndpointsService {
     });
     if (endpointInDb) {
       throw new HttpException(
-        'Endpoint already exists',
+        "Endpoint already exists",
         HttpStatus.BAD_REQUEST
       );
     }

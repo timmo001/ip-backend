@@ -1,15 +1,15 @@
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
+import { Injectable, HttpException, HttpStatus } from "@nestjs/common";
+import { JwtService } from "@nestjs/jwt";
 
-import { ConfigService } from '../config/config.service';
-import { CreateUserDto } from '../users/dto/user.create.dto';
-import { JwtPayload } from './interfaces/payload.interface';
-import { LoginStatus } from './interfaces/login-status.interface';
-import { LoginUserDto } from '../users/dto/user.login.dto';
-import { RegistrationStatus } from './interfaces/regisration-status.interface';
-import { UserDto } from '../users/dto/user.dto';
-import { UsersService } from '../users/users.service';
-import Config from '../types/Config';
+import { ConfigService } from "../config/config.service";
+import { CreateUserDto } from "../users/dto/user.create.dto";
+import { JwtPayload } from "./interfaces/payload.interface";
+import { LoginStatus } from "./interfaces/login-status.interface";
+import { LoginUserDto } from "../users/dto/user.login.dto";
+import { RegistrationStatus } from "./interfaces/regisration-status.interface";
+import { UserDto } from "../users/dto/user.dto";
+import { UsersService } from "../users/users.service";
+import Config from "../types/Config";
 
 @Injectable()
 export class AuthService {
@@ -25,7 +25,7 @@ export class AuthService {
   async register(userDto: CreateUserDto): Promise<RegistrationStatus> {
     let status: RegistrationStatus = {
       success: true,
-      message: 'User Registered',
+      message: "User Registered",
     };
 
     try {
@@ -56,7 +56,7 @@ export class AuthService {
   async validateUser(payload: JwtPayload): Promise<UserDto> {
     const user = await this.usersService.findByPayload(payload);
     if (!user) {
-      throw new HttpException('Invalid token', HttpStatus.UNAUTHORIZED);
+      throw new HttpException("Invalid token", HttpStatus.UNAUTHORIZED);
     }
     return user;
   }

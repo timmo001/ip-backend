@@ -1,5 +1,5 @@
 {
-  "name": "UPaaS Dev",
+  "name": "ip Dev",
   "context": "..",
   "containerEnv": {
     "EDITOR": "code"

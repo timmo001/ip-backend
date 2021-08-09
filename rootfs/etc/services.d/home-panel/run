@@ -2,7 +2,7 @@
 # ==============================================================================
 # Starts server to serve the app
 # ==============================================================================
-echo 'Run UPaaS..'
+echo 'Run ip..'
 
 # shellcheck disable=SC2164
 cd /opt/panel/backend

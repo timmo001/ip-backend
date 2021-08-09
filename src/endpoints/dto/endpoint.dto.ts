@@ -1,4 +1,4 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty } from "class-validator";
 
 export class EndpointDto {
   @IsNotEmpty()
@@ -17,7 +17,7 @@ export class EndpointDto {
   resultOnly: boolean;
 
   @IsNotEmpty()
-  logLevel: 'debug' | 'info' | 'warn' | 'error';
+  logLevel: "debug" | "info" | "warn" | "error";
 
   @IsNotEmpty()
   supportedMethods: string;

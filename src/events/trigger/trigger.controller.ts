@@ -7,16 +7,16 @@ import {
   Query,
   Request,
   UseGuards,
-} from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
+} from "@nestjs/common";
+import { AuthGuard } from "@nestjs/passport";
 
-import { EventTriggerService } from './trigger.service';
-import ApiResponse from '../../types/ApiResponse';
-import Data from '../../types/Data';
-import Generic from '../../types/Generic';
-import GenericObject from '../../types/GenericObject';
+import { EventTriggerService } from "./trigger.service";
+import ApiResponse from "../../types/ApiResponse";
+import Data from "../../types/Data";
+import Generic from "../../types/Generic";
+import GenericObject from "../../types/GenericObject";
 
-@Controller('backend/events/:id/trigger')
+@Controller("backend/events/:id/trigger")
 export class EventTriggerController {
   constructor(private eventTriggerService: EventTriggerService) {}
 
@@ -38,10 +38,10 @@ export class EventTriggerController {
       },
       serviceKey: params.id,
     });
-    if (result.response && result.response['errorCode'])
+    if (result.response && result.response["errorCode"])
       throw new HttpException(
-        result.response['message'],
-        result.response['errorCode']
+        result.response["message"],
+        result.response["errorCode"]
       );
     return result;
   }

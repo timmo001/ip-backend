@@ -1,21 +1,21 @@
-import { JwtModule } from '@nestjs/jwt';
-import { PassportModule } from '@nestjs/passport';
-import { Test, TestingModule } from '@nestjs/testing';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { v4 as uuidv4 } from 'uuid';
+import { JwtModule } from "@nestjs/jwt";
+import { PassportModule } from "@nestjs/passport";
+import { Test, TestingModule } from "@nestjs/testing";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { v4 as uuidv4 } from "uuid";
 
-import { ConfigModule } from '../config/config.module';
-import { ConfigService } from '../config/config.service';
-import { ServicesController } from './services.controller';
-import { ServicesService } from './services.service';
-import { UserEntity } from '../users/entity/user.entity';
-import { UsersModule } from '../users/users.module';
-import { UsersService } from '../users/users.service';
-import Service from '../types/Service';
+import { ConfigModule } from "../config/config.module";
+import { ConfigService } from "../config/config.service";
+import { ServicesController } from "./services.controller";
+import { ServicesService } from "./services.service";
+import { UserEntity } from "../users/entity/user.entity";
+import { UsersModule } from "../users/users.module";
+import { UsersService } from "../users/users.service";
+import Service from "../types/Service";
 
 const config = new ConfigService().getConfig();
 
-describe('ServicesController', () => {
+describe("ServicesController", () => {
   let controller: ServicesController;
   let service: ServicesService;
 
@@ -25,7 +25,7 @@ describe('ServicesController', () => {
       imports: [
         ConfigModule,
         TypeOrmModule.forRoot({
-          type: 'mariadb',
+          type: "mariadb",
           host: config.database.host,
           port: config.database.port,
           username: config.database.username,
@@ -41,8 +41,8 @@ describe('ServicesController', () => {
           },
         }),
         PassportModule.register({
-          defaultStrategy: 'jwt',
-          property: 'user',
+          defaultStrategy: "jwt",
+          property: "user",
           session: false,
         }),
         UsersModule,
@@ -54,29 +54,29 @@ describe('ServicesController', () => {
     service = module.get<ServicesService>(ServicesService);
   });
 
-  describe('controller', () => {
-    it('should be defined', () => {
+  describe("controller", () => {
+    it("should be defined", () => {
       expect(controller).toBeDefined();
     });
   });
 
-  describe('service', () => {
-    it('should be defined', () => {
+  describe("service", () => {
+    it("should be defined", () => {
       expect(service).toBeDefined();
     });
   });
 
-  describe('getServices', () => {
-    it('should return services', async () => {
+  describe("getServices", () => {
+    it("should return services", async () => {
       const data: Service[] = [
         {
           id: uuidv4(),
-          name: 'test',
+          name: "test",
           actions: [],
         },
       ];
 
-      jest.spyOn(service, 'getServices').mockImplementation(() => data);
+      jest.spyOn(service, "getServices").mockImplementation(() => data);
 
       const result = controller.getServices();
 

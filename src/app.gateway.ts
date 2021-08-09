@@ -6,13 +6,14 @@ import {
   // SubscribeMessage,
   WebSocketGateway,
   WebSocketServer,
-} from '@nestjs/websockets';
-import { Logger } from '@nestjs/common';
-import { Socket, Server } from 'socket.io';
+} from "@nestjs/websockets";
+import { Logger } from "@nestjs/common";
+import { Socket, Server } from "socket.io";
 
 @WebSocketGateway()
 export class AppGateway
-  implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
+  implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect
+{
   @WebSocketServer() server: Server;
 
   private logger: Logger = new Logger(AppGateway.name);
@@ -24,7 +25,7 @@ export class AppGateway
   // }
 
   afterInit(): void {
-    this.logger.log('Initilized');
+    this.logger.log("Initilized");
   }
 
   handleConnection(client: Socket): void {

@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, FindManyOptions, FindOneOptions } from 'typeorm';
+import { Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository, FindManyOptions, FindOneOptions } from "typeorm";
 
-import { EventDto } from './dto/event.dto';
-import { EventEntity } from './entity/event.entity';
+import { EventDto } from "./dto/event.dto";
+import { EventEntity } from "./entity/event.entity";
 
 @Injectable()
 export class EventsService {

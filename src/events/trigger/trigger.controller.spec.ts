@@ -1,19 +1,19 @@
-import { JwtModule } from '@nestjs/jwt';
-import { PassportModule } from '@nestjs/passport';
-import { Test, TestingModule } from '@nestjs/testing';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { JwtModule } from "@nestjs/jwt";
+import { PassportModule } from "@nestjs/passport";
+import { Test, TestingModule } from "@nestjs/testing";
+import { TypeOrmModule } from "@nestjs/typeorm";
 
-import { ConfigModule } from '../../config/config.module';
-import { ConfigService } from '../../config/config.service';
-import { EventTriggerController } from './trigger.controller';
-import { EventTriggerService } from './trigger.service';
-import { UserEntity } from '../../users/entity/user.entity';
-import { UsersModule } from '../../users/users.module';
-import ApiResponse from '../../types/ApiResponse';
+import { ConfigModule } from "../../config/config.module";
+import { ConfigService } from "../../config/config.service";
+import { EventTriggerController } from "./trigger.controller";
+import { EventTriggerService } from "./trigger.service";
+import { UserEntity } from "../../users/entity/user.entity";
+import { UsersModule } from "../../users/users.module";
+import ApiResponse from "../../types/ApiResponse";
 
 const config = new ConfigService().getConfig();
 
-describe('EventTriggerController', () => {
+describe("EventTriggerController", () => {
   let controller: EventTriggerController;
   let service: EventTriggerService;
 
@@ -23,7 +23,7 @@ describe('EventTriggerController', () => {
       imports: [
         ConfigModule,
         TypeOrmModule.forRoot({
-          type: 'mariadb',
+          type: "mariadb",
           host: config.database.host,
           port: config.database.port,
           username: config.database.username,
@@ -39,8 +39,8 @@ describe('EventTriggerController', () => {
           },
         }),
         PassportModule.register({
-          defaultStrategy: 'jwt',
-          property: 'user',
+          defaultStrategy: "jwt",
+          property: "user",
           session: false,
         }),
         UsersModule,
@@ -52,23 +52,23 @@ describe('EventTriggerController', () => {
     service = module.get<EventTriggerService>(EventTriggerService);
   });
 
-  describe('controller', () => {
-    it('should be defined', () => {
+  describe("controller", () => {
+    it("should be defined", () => {
       expect(controller).toBeDefined();
     });
   });
 
-  describe('service', () => {
-    it('should be defined', () => {
+  describe("service", () => {
+    it("should be defined", () => {
       expect(service).toBeDefined();
     });
   });
 
-  describe('getEventTrigger', () => {
-    it('should return eventtrigger', async () => {
+  describe("getEventTrigger", () => {
+    it("should return eventtrigger", async () => {
       const data: ApiResponse = { response: {}, request: {} };
 
-      jest.spyOn(service, 'sendEvent').mockImplementation(async () => data);
+      jest.spyOn(service, "sendEvent").mockImplementation(async () => data);
 
       const result = await controller.postEvent({}, {}, {});
 

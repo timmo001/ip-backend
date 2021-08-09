@@ -7,20 +7,20 @@ import {
   Post,
   Put,
   UseGuards,
-} from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
+} from "@nestjs/common";
+import { AuthGuard } from "@nestjs/passport";
 
-import { EndpointsService } from './endpoints.service';
-import { EndpointEntity } from './entity/endpoint.entity';
-import Data from '../types/Data';
-import GenericObject from 'src/types/GenericObject';
+import { EndpointsService } from "./endpoints.service";
+import { EndpointEntity } from "./entity/endpoint.entity";
+import Data from "../types/Data";
+import GenericObject from "src/types/GenericObject";
 
-@Controller('backend/endpoints')
+@Controller("backend/endpoints")
 export class EndpointsController {
   constructor(private endpointsService: EndpointsService) {}
 
   @UseGuards(AuthGuard())
-  @Delete(':id')
+  @Delete(":id")
   public async deleteEndpoint(@Param() params: Data): Promise<{ id: string }> {
     return { id: await this.endpointsService.delete(params.id) };
   }
@@ -32,7 +32,7 @@ export class EndpointsController {
   }
 
   @UseGuards(AuthGuard())
-  @Get(':id')
+  @Get(":id")
   public async getEndpoint(
     @Param() params: { id: string }
   ): Promise<EndpointEntity> {
@@ -48,7 +48,7 @@ export class EndpointsController {
   }
 
   @UseGuards(AuthGuard())
-  @Put(':id')
+  @Put(":id")
   public async updateEndpoint(
     @Param() params: Data,
     @Body() endpoint: EndpointEntity

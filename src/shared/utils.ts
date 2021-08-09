@@ -1,8 +1,9 @@
-import { compare } from 'bcrypt';
-import * as fs from 'fs';
-import * as YAML from 'yaml';
+import { compare } from "bcrypt";
+import { join } from "path";
+import { parse, stringify } from "yaml";
+import { readFileSync, writeFileSync } from "fs";
 
-import GenericObject from '../types/GenericObject';
+import GenericObject from "../types/GenericObject";
 
 export const toPromise = <T>(data: T): Promise<T> => {
   return new Promise<T>((resolve) => {
@@ -18,13 +19,26 @@ export const comparePasswords = async (
 };
 
 export const readYAML = (path: string): any | null => {
-  const d = fs.readFileSync(path, { encoding: 'utf8' });
-  if (typeof d === 'string') return YAML.parse(d);
+  try {
+    const d = readFileSync(path, { encoding: "utf8" });
+    if (typeof d === "string") return parse(d);
+  } catch (e) {}
   return null;
 };
 
 export const saveYAML = (path: string, data: GenericObject): any | null => {
-  return fs.writeFileSync(path, `---\n${YAML.stringify(data)}`, {
-    encoding: 'utf8',
+  return writeFileSync(path, `---\n${stringify(data)}`, {
+    encoding: "utf8",
   });
 };
+
+export function getAppDataDirectory() {
+  return join(
+    process.env.APP_PATH ||
+      process.env.APPDATA ||
+      (process.platform == "darwin"
+        ? process.env.HOME + "/Library/Preferences"
+        : process.env.HOME + "/.local/share"),
+    "ip-data"
+  );
+}

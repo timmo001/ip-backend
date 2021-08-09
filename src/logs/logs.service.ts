@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, FindManyOptions, FindOneOptions } from 'typeorm';
+import { Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository, FindManyOptions, FindOneOptions } from "typeorm";
 
-import { LogDto } from './dto/log.dto';
-import { LogEntity } from './entity/log.entity';
+import { LogDto } from "./dto/log.dto";
+import { LogEntity } from "./entity/log.entity";
 
 @Injectable()
 export class LogsService {

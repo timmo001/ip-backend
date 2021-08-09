@@ -1,23 +1,23 @@
-import { JwtModule } from '@nestjs/jwt';
-import { PassportModule } from '@nestjs/passport';
-import { Test, TestingModule } from '@nestjs/testing';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { JwtModule } from "@nestjs/jwt";
+import { PassportModule } from "@nestjs/passport";
+import { Test, TestingModule } from "@nestjs/testing";
+import { TypeOrmModule } from "@nestjs/typeorm";
 
-import { ConfigService } from '../config/config.service';
-import { UserEntity } from '../users/entity/user.entity';
-import { UsersModule } from '../users/users.module';
-import { UsersService } from '../users/users.service';
+import { ConfigService } from "../config/config.service";
+import { UserEntity } from "../users/entity/user.entity";
+import { UsersModule } from "../users/users.module";
+import { UsersService } from "../users/users.service";
 
 const config = new ConfigService().getConfig();
 
-describe('UsersService', () => {
+describe("UsersService", () => {
   let service: UsersService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [
         TypeOrmModule.forRoot({
-          type: 'mariadb',
+          type: "mariadb",
           host: config.database.host,
           port: config.database.port,
           username: config.database.username,
@@ -34,8 +34,8 @@ describe('UsersService', () => {
           },
         }),
         PassportModule.register({
-          defaultStrategy: 'jwt',
-          property: 'user',
+          defaultStrategy: "jwt",
+          property: "user",
           session: false,
         }),
         UsersModule,
@@ -46,7 +46,7 @@ describe('UsersService', () => {
     service = module.get<UsersService>(UsersService);
   });
 
-  it('should be defined', () => {
+  it("should be defined", () => {
     expect(service).toBeDefined();
   });
 });

@@ -1,23 +1,23 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { Test, TestingModule } from "@nestjs/testing";
+import { TypeOrmModule } from "@nestjs/typeorm";
 
-import { ConfigModule } from '../config/config.module';
-import { ConfigService } from '../config/config.service';
-import { LogEntity } from './entity/log.entity';
-import { LogsModule } from './logs.module';
-import { LogsService } from './logs.service';
-import { UserEntity } from '../users/entity/user.entity';
+import { ConfigModule } from "../config/config.module";
+import { ConfigService } from "../config/config.service";
+import { LogEntity } from "./entity/log.entity";
+import { LogsModule } from "./logs.module";
+import { LogsService } from "./logs.service";
+import { UserEntity } from "../users/entity/user.entity";
 
 const config = new ConfigService().getConfig();
 
-describe('LogsService', () => {
+describe("LogsService", () => {
   let service: LogsService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [
         TypeOrmModule.forRoot({
-          type: 'mariadb',
+          type: "mariadb",
           host: config.database.host,
           port: config.database.port,
           username: config.database.username,
@@ -36,7 +36,7 @@ describe('LogsService', () => {
     service = module.get<LogsService>(LogsService);
   });
 
-  it('should be defined', () => {
+  it("should be defined", () => {
     expect(service).toBeDefined();
   });
 });

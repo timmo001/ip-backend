@@ -1,11 +1,11 @@
-import { Injectable } from '@nestjs/common';
-import * as fs from 'fs';
+import { Injectable } from "@nestjs/common";
+import { readdirSync, unlinkSync } from "fs";
 
-import { ConfigService } from '../config/config.service';
-import { readYAML, saveYAML } from '../shared/utils';
-import Config from '../types/Config';
-import Data from '../types/Data';
-import Service from '../types/Service';
+import { ConfigService } from "../config/config.service";
+import { readYAML, saveYAML } from "../shared/utils";
+import Config from "../types/Config";
+import Data from "../types/Data";
+import Service from "../types/Service";
 
 @Injectable()
 export class ServicesService {
@@ -16,14 +16,14 @@ export class ServicesService {
   }
 
   getServices(): Service[] | null {
-    const services_dir = fs.readdirSync(this.config.services_directory, {
-      encoding: 'utf8',
+    const services_dir = readdirSync(this.config.services_directory, {
+      encoding: "utf8",
     });
     if (services_dir) {
       return services_dir.map(
         (file: string) =>
-          file.endsWith('.yaml') && {
-            id: file.replace('.yaml', ''),
+          file.endsWith(".yml") && {
+            id: file.replace(".yml", ""),
             ...readYAML(`${this.config.services_directory}/${file}`),
           }
       );
@@ -32,13 +32,13 @@ export class ServicesService {
   }
 
   deleteService(id: string): Data | null {
-    const path = `${this.config.services_directory}/${id}.yaml`;
-    fs.unlinkSync(path);
+    const path = `${this.config.services_directory}/${id}.yml`;
+    unlinkSync(path);
     return { id };
   }
 
   saveService(id: string, service: Service): Data | null {
-    const path = `${this.config.services_directory}/${id}.yaml`;
+    const path = `${this.config.services_directory}/${id}.yml`;
     delete service.id;
     saveYAML(path, service);
     return { id };

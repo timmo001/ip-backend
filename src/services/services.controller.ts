@@ -8,22 +8,22 @@ import {
   Post,
   Put,
   UseGuards,
-} from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
-import { v4 as uuidv4 } from 'uuid';
+} from "@nestjs/common";
+import { AuthGuard } from "@nestjs/passport";
+import { v4 as uuidv4 } from "uuid";
 
-import { ServicesService } from './services.service';
-import Data from '../types/Data';
-import Service from '../types/Service';
+import { ServicesService } from "./services.service";
+import Data from "../types/Data";
+import Service from "../types/Service";
 
-@Controller('backend/services')
+@Controller("backend/services")
 export class ServicesController {
   private logger: Logger = new Logger(ServicesController.name);
 
   constructor(private servicesService: ServicesService) {}
 
   @UseGuards(AuthGuard())
-  @Delete(':id')
+  @Delete(":id")
   public deleteService(@Param() params: Data): Data | null {
     this.logger.debug(`deleteService: ${params.id}`);
     return this.servicesService.deleteService(params.id);
@@ -36,7 +36,7 @@ export class ServicesController {
   }
 
   @UseGuards(AuthGuard())
-  @Get(':id')
+  @Get(":id")
   public getService(@Param() params: Data): Service | null {
     this.logger.debug(`getService: ${params.id}`);
     const services: Service[] = this.servicesService.getServices();
@@ -58,7 +58,7 @@ export class ServicesController {
   }
 
   @UseGuards(AuthGuard())
-  @Put(':id')
+  @Put(":id")
   public updateService(
     @Param() params: Data,
     @Body() service: Service
