@@ -7,10 +7,6 @@ const filePaths = [
     from: "../LICENSE",
     to: "../out/LICENSE",
   },
-  {
-    from: "../package.json",
-    to: "../out/package.json",
-  },
 ];
 
 async function package() {
