@@ -28,7 +28,7 @@ export class ConfigService {
         core: {
           host: "localhost",
           log_level: "debug",
-          socket_port: 1337,
+          socket_port: 5686,
         },
         database: {
           type: "better-sqlite3",

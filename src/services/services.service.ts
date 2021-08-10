@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { readdirSync, unlinkSync } from "fs";
+import { existsSync, mkdirSync, readdirSync, unlinkSync } from "fs";
 
 import { ConfigService } from "../config/config.service";
 import { readYAML, saveYAML } from "../shared/utils";
@@ -13,6 +13,8 @@ export class ServicesService {
 
   constructor(private readonly configService: ConfigService) {
     this.config = this.configService.getConfig();
+    if (!existsSync(this.config.services_directory))
+      mkdirSync(this.config.services_directory);
   }
 
   getServices(): Service[] | null {
