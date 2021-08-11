@@ -16,6 +16,7 @@ export class EventTriggerService {
 
   constructor() {
     this.config = new ConfigService().getConfig();
+    this.startWebsocketConnection();
   }
 
   async sendEvent(event: Event): Promise<ApiResponse> {
