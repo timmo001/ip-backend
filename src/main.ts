@@ -30,7 +30,7 @@ async function bootstrap() {
     .addTag("ip")
     .build();
   const document = SwaggerModule.createDocument(app, options);
-  SwaggerModule.setup("api", app, document);
+  SwaggerModule.setup("docs", app, document);
 
   await app.listen(config.backend.api_port);
   logger.log(`Server running on port ${config.backend.api_port}`);
