@@ -137,7 +137,8 @@ jobs:
             BUILD_FROM=${{ steps.flags.outputs.from }}
             BUILD_REF=${{ github.sha }}
             BUILD_REPOSITORY=${{ github.repository }}
-            BUILD_VERSION=${{ needs.information.outputs.version }}  deploy-output:
+            BUILD_VERSION=${{ needs.information.outputs.version }}
+  deploy-output:
     name: 👷 Deploy Output to Release Assets
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/')
