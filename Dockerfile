@@ -6,7 +6,7 @@ FROM ${BUILD_FROM}
 COPY rootfs /
 
 # Copy application
-COPY . /opt/ip-backend
+COPY out /opt/ip-backend
 
 # Set shell
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
@@ -18,19 +18,9 @@ WORKDIR /opt/ip-backend
 RUN \
     set -o pipefail \
     \
-    && apk add --no-cache --virtual .build-dependencies \
-        g++=10.3.1_git20210424-r2 \
-        make=4.3-r0 \
-        python3-dev=3.9.5-r1 \
-    \
     && apk add --no-cache \
         nginx=1.20.1-r3 \
-        nodejs-current=16.6.0-r0 \
-        yarn=1.22.10-r0 \
     \
-    && yarn install \
-    \
-    && apk del --no-cache --purge .build-dependencies \
     && rm -fr /tmp/*
 
 # Build arguments
