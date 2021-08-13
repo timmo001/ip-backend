@@ -276,7 +276,7 @@ jobs:
           file: Dockerfile
           cache-from: |
             type=local,src=/tmp/.docker-cache
-            ghcr.io/timmo001/home-panel/${{ matrix.architecture }}:edge
+            ghcr.io/timmo001/ip-backend/${{ matrix.architecture }}:edge
           cache-to: type=local,mode=max,dest=/tmp/.docker-cache
           platforms: ${{ steps.flags.outputs.platform }}
           build-args: |
