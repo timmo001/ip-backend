@@ -2,12 +2,12 @@
 version: "3"
 
 volumes:
-  home_panel_data: {}
+  ip-data: {}
 
 services:
   ip:
     build: .
     volumes:
-      - home_panel_data:/data
+      - ip-data:/data
     ports:
-      - 8234:8234
+      - 5684:5684
