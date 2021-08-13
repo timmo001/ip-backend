@@ -13,16 +13,6 @@ SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
 WORKDIR /opt/ip-backend
 
-# Install system
-# hadolint ignore=DL3003,DL3018
-RUN \
-    set -o pipefail \
-    \
-    && apk add --no-cache \
-        nginx=1.20.1-r3 \
-    \
-    && rm -fr /tmp/*
-
 # Build arguments
 ARG BUILD_ARCH
 ARG BUILD_DATE

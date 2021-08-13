@@ -2,19 +2,7 @@
 # ==============================================================================
 # Starts server to serve the app
 # ==============================================================================
-echo 'Run ip..'
-
 # shellcheck disable=SC2164
 cd /opt/ip-backend
 
-if [ -n "$SSL_CERTFILE" ]; then
-  SSL_PATH_CERT="/data/ssl/$SSL_CERTFILE"
-  export SSL_PATH_CERT
-fi
-
-if [ -n "$SSL_KEYFILE" ]; then
-  SSL_PATH_KEY="/data/ssl/$SSL_KEYFILE"
-  export SSL_PATH_KEY
-fi
-
-exec ip-backend
+exec /opt/ip-backend/ip-backend
