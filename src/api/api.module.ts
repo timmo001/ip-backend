@@ -1,4 +1,5 @@
 import { Module } from "@nestjs/common";
+import { PassportModule } from "@nestjs/passport";
 
 import { ApiController } from "./api.controller";
 import { ApiService } from "./api.service";
@@ -14,6 +15,7 @@ import { UsersModule } from "../users/users.module";
     ConfigModule,
     EndpointsModule,
     EventTriggerModule,
+    PassportModule.register({ defaultStrategy: "jwt" }),
     UsersModule,
   ],
   controllers: [ApiController],
