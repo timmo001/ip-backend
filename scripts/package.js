@@ -15,7 +15,7 @@ async function package() {
     "--output",
     join(
       __dirname,
-      `../out/ip-core${process.platform === "win32" ? ".exe" : ""}`
+      `../out/ip-backend${process.platform === "win32" ? ".exe" : ""}`
     ),
   ]);
 
