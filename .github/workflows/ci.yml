@@ -210,6 +210,7 @@ jobs:
     name: 🚀 Build Container - ${{ matrix.architecture }}
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         architecture:
           - aarch64
