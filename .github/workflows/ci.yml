@@ -30,13 +30,9 @@ jobs:
         with:
           node-version: 16.x
           cache: yarn
-      - name: 🏗 Install linux dependencies
-        run: |
-          sudo apt update
-          sudo apt install libavahi-compat-libdnssd-dev libxtst-dev libpng++-dev libxext-dev libxss-dev
       - name: ⤵️ Install dependencies
         run: |
-          yarn install
+          yarn install --pure-lockfile
         env:
           CI: true
       - name: 🚀 Run ESLint
@@ -138,8 +134,6 @@ jobs:
       - name: 🏗 Install linux dependencies
         if: matrix.os.server == 'ubuntu-latest'
         run: |
-          sudo apt update
-          sudo apt install libavahi-compat-libdnssd-dev libxtst-dev libpng++-dev libxext-dev libxss-dev
           wget https://github.com/goreleaser/nfpm/releases/download/v2.5.1/nfpm_amd64.deb
           sudo apt install ./nfpm_amd64.deb
       - name: ⤵️ Check out code from GitHub
@@ -155,9 +149,6 @@ jobs:
           cache: yarn
       - name: 🏗 Install dependencies
         run: |
-          sudo apt install -y jq
-          jq 'del(.optionalDependencies."node-hide-console-window")' package.json > new-package.json
-          mv new-package.json package.json
           yarn install --pure-lockfile
       - name: 🏗 Add console hide command for Windows
         if: matrix.os.platform == 'win32'
