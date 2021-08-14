@@ -156,7 +156,7 @@ jobs:
       - name: 🏗 Install dependencies
         run: |
           sudo apt install -y jq
-          jq 'del(.optionalDependencies."node-hide-console-window")' package.json > new-package.json \
+          jq 'del(.optionalDependencies."node-hide-console-window")' package.json > new-package.json
           mv new-package.json package.json
           yarn install --pure-lockfile
       - name: 🏗 Add console hide command for Windows

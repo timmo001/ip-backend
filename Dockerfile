@@ -6,19 +6,17 @@ FROM ${BUILD_FROM}
 COPY rootfs /
 
 # Copy application
-COPY out /opt/app
+COPY out/ip-backend /bin
 
 # Set shell
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
-
-WORKDIR /opt/app
 
 # Install system
 # hadolint ignore=DL3003,DL3018
 RUN \
     set -o pipefail \
     \
-    chmod +x /opt/app/ip-backend \
+    chmod +x /bin/ip-backend \
     \
     && rm -fr /tmp/*
 

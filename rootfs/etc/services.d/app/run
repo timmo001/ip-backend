@@ -1,8 +1,5 @@
 #!/usr/bin/with-contenv bash
 # ==============================================================================
-# Starts server to serve the app
+# Starts app
 # ==============================================================================
-# shellcheck disable=SC2164
-cd /opt/app
-
-exec /opt/app/ip-backend
+exec ip-backend
