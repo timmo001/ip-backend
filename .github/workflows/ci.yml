@@ -216,7 +216,6 @@ jobs:
           - amd64
           - armhf
           - armv7
-          - i386
     steps:
       - name: ⤵️ Check out code from GitHub
         uses: actions/checkout@v2.3.4
@@ -242,8 +241,6 @@ jobs:
           echo "::set-output name=from::${from}"
           if [[ "${{ matrix.architecture}}" = "amd64" ]]; then
             echo "::set-output name=platform::linux/amd64"
-          elif [[ "${{ matrix.architecture }}" = "i386" ]]; then
-            echo "::set-output name=platform::linux/386"
           elif [[ "${{ matrix.architecture }}" = "armhf" ]]; then
             echo "::set-output name=platform::linux/arm/v6"
           elif [[ "${{ matrix.architecture }}" = "armv7" ]]; then

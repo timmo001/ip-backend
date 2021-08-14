@@ -30,7 +30,13 @@ RUN \
     && cd /tmp/app \
     && jq 'del(.optionalDependencies."node-hide-console-window")' package.json > new-package.json \
     && mv new-package.json package.json \
-    && yarn install --pure-lockfile \
+    && yarn install --pure-lockfile
+
+# hadolint ignore=DL3003,DL3018
+RUN \
+    set -o pipefail \
+    \
+    && cd /tmp/app \
     && yarn package \
     && cp out/ip-backend /bin \
     \
