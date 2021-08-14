@@ -23,7 +23,7 @@
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "lint:eslint": "eslint --ext .ts --color \"{src,apps,libs,test}/**/*.ts\"",
-    "package": "rimraf out && yarn build && node scripts/package.js",
+    "package": "rimraf out && yarn build && pkg .",
     "start": "nest start",
     "start:debug": "nest start --debug --watch",
     "start:dev": "nest start --watch",

@@ -6,7 +6,7 @@ FROM ${BUILD_FROM}
 COPY rootfs /
 
 # Copy application
-COPY out/ip-backend /bin
+COPY . /tmp/app
 
 # Set shell
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
@@ -16,8 +16,27 @@ SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 RUN \
     set -o pipefail \
     \
-    chmod +x /bin/ip-backend \
+    && apk add --no-cache --virtual .build-dependencies \
+        g++=10.3.1_git20210424-r2	\
+        make=4.3-r0	\
+        nodejs-current=16.6.0-r0 \
+        npm=7.17.0-r0 \
+        python3-dev=3.9.5-r1 \
+        yarn=1.22.10-r0 \
     \
+    && apk add --no-cache \
+        libstdc++=10.3.1_git20210424-r2 \
+    \
+    && cd /tmp/app \
+    && jq 'del(.optionalDependencies."node-hide-console-window")' package.json > new-package.json \
+    && mv new-package.json package.json \
+    && yarn install --pure-lockfile \
+    && yarn package \
+    && cp out/ip-backend /bin \
+    \
+    && mkdir -p /root/.local/share/ip-data \
+    \
+    && apk del --purge .build-dependencies \
     && rm -fr /tmp/*
 
 # Build arguments
