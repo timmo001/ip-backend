@@ -11,6 +11,8 @@ COPY . /tmp/app
 # Set shell
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
+ARG BUILD_ARCH=amd64
+
 # Install system
 # hadolint ignore=DL3003,DL3018
 RUN \
@@ -36,8 +38,11 @@ RUN \
 RUN \
     set -o pipefail \
     \
+    && PKG_ARCH="${BUILD_ARCH}" \
+    && if [ "${BUILD_ARCH}" = "amd64" ]; then PKG_ARCH="x64"; fi \
+    \
     && cd /tmp/app \
-    && yarn package \
+    && yarn package --targets latest-linux-${PKG_ARCH} \
     && cp out/ip-backend /bin \
     \
     && mkdir -p /root/.local/share/ip-data \
@@ -46,7 +51,6 @@ RUN \
     && rm -fr /tmp/*
 
 # Build arguments
-ARG BUILD_ARCH
 ARG BUILD_DATE
 ARG BUILD_DESCRIPTION
 ARG BUILD_NAME
