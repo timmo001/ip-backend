@@ -3,8 +3,6 @@
 # Starts server to serve the app
 # ==============================================================================
 # shellcheck disable=SC2164
-cd /opt/ip-backend
+cd /opt/app
 
-chmod +x /opt/ip-backend/ip-backend
-
-exec /opt/ip-backend/ip-backend
+exec /opt/app/ip-backend

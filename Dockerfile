@@ -6,12 +6,21 @@ FROM ${BUILD_FROM}
 COPY rootfs /
 
 # Copy application
-COPY out /opt/ip-backend
+COPY out /opt/app
 
 # Set shell
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
-WORKDIR /opt/ip-backend
+WORKDIR /opt/app
+
+# Install system
+# hadolint ignore=DL3003,DL3018
+RUN \
+    set -o pipefail \
+    \
+    chmod +x /opt/app/ip-backend \
+    \
+    && rm -fr /tmp/*
 
 # Build arguments
 ARG BUILD_ARCH
