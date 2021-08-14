@@ -55,10 +55,7 @@ jobs:
     strategy:
       matrix:
         architecture:
-          - aarch64
           - amd64
-          - armhf
-          - armv7
     steps:
       - name: ⤵️ Check out code from GitHub
         uses: actions/checkout@v2.3.4
@@ -82,12 +79,6 @@ jobs:
           echo "::set-output name=from::${from}"
           if [[ "${{ matrix.architecture}}" = "amd64" ]]; then
             echo "::set-output name=platform::linux/amd64"
-          elif [[ "${{ matrix.architecture }}" = "armhf" ]]; then
-            echo "::set-output name=platform::linux/arm/v6"
-          elif [[ "${{ matrix.architecture }}" = "armv7" ]]; then
-            echo "::set-output name=platform::linux/arm/v7"
-          elif [[ "${{ matrix.architecture }}" = "aarch64" ]]; then
-            echo "::set-output name=platform::linux/arm64/v8"
           else
             echo "::error ::Could not determine platform for architecture ${{ matrix.architecture }}"
             exit 1

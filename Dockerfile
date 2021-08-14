@@ -38,11 +38,8 @@ RUN \
 RUN \
     set -o pipefail \
     \
-    && PKG_ARCH="${BUILD_ARCH}" \
-    && if [ "${BUILD_ARCH}" = "amd64" ]; then PKG_ARCH="x64"; fi \
-    \
     && cd /tmp/app \
-    && yarn package --targets latest-linux-${PKG_ARCH} \
+    && yarn package \
     && cp out/ip-backend /bin \
     \
     && mkdir -p /root/.local/share/ip-data \
