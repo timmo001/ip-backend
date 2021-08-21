@@ -36,7 +36,9 @@ export class EventTriggerService {
   }
 
   startWebsocketConnection() {
-    const url = `ws://${this.config.core.host}:${this.config.core.socket_port}`;
+    const url = `ws://${process.env.CORE_HOST || this.config.core.host}:${
+      process.env.CORE_PORT || this.config.core.socket_port
+    }`;
     this.websocket = new WebSocket(url);
     this.websocket.on("open", this.websocketOpened);
     this.websocket.on("close", this.websocketClosed);

@@ -1,3 +1,4 @@
+import { config as dotenv } from "dotenv";
 import { existsSync, mkdirSync } from "fs";
 import { Logger } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
@@ -35,4 +36,6 @@ async function bootstrap() {
   await app.listen(config.backend.api_port);
   logger.log(`Server running on port ${config.backend.api_port}`);
 }
+
+dotenv();
 bootstrap();
