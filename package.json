@@ -88,7 +88,7 @@
     "pkg": "5.3.1",
     "prettier": "2.3.2",
     "supertest": "6.1.6",
-    "ts-jest": "27.0.4",
+    "ts-jest": "27.0.5",
     "ts-loader": "9.2.5",
     "ts-node": "10.2.1",
     "tsconfig-paths": "3.10.1",
