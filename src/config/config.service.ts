@@ -23,7 +23,7 @@ export class ConfigService {
         backend: {
           api_port: 5684,
           secret: uuidv4(),
-          token_expiry: "1800s",
+          token_expiry: "3600s",
         },
         core: {
           host: "localhost",
