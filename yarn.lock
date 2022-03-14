@@ -734,13 +734,13 @@
   dependencies:
     uuid "8.3.2"
 
-"@nestjs/websockets@8.1.1":
-  version "8.1.1"
-  resolved "https://registry.yarnpkg.com/@nestjs/websockets/-/websockets-8.1.1.tgz#81869b1a216054aa144cea0a9e82652570fc7918"
-  integrity sha512-/tsYwCgYtAcCfxKJo6FR5dnutI3fTbM4hvOQObZJ4dSObxB0KAstRQb4HRLNWM+D4pWqa+yLXxZ+de9SzpyTdg==
+"@nestjs/websockets@8.4.1":
+  version "8.4.1"
+  resolved "https://registry.yarnpkg.com/@nestjs/websockets/-/websockets-8.4.1.tgz#d6f6e110c43ac02873cdfcfd5e177fd26ce11cd9"
+  integrity sha512-6ozRqLZR87iyKHmiFf4JoslWTy4bSAE+mI19OrRyfYbhpXkNLxe/G/vtJ8bXFJWgPFKY7HjfiFFevZ71nvt3IA==
   dependencies:
     iterare "1.2.1"
-    object-hash "2.2.0"
+    object-hash "3.0.0"
     tslib "2.3.1"
 
 "@nodelib/fs.scandir@2.1.5":
@@ -4439,6 +4439,11 @@ object-hash@2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/object-hash/-/object-hash-2.2.0.tgz#5ad518581eefc443bd763472b8ff2e9c2c0d54a5"
   integrity sha512-gScRMn0bS5fH+IuwyIFgnh9zBdo4DV+6GhygmWM9HyNJSgS0hScp1f5vjtm7oIIOiT9trXrShAkLFSc2IqKNgw==
+
+object-hash@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/object-hash/-/object-hash-3.0.0.tgz#73f97f753e7baffc0e2cc9d6e079079744ac82e9"
+  integrity sha512-RSn9F68PjH9HqtltsSnqYC1XXoWe9Bju5+213R98cNGttag9q9yAOTzdbsqvIa7aNm5WffBZFpWYr2aWrklWAw==
 
 object-inspect@^1.9.0:
   version "1.11.0"
